@@ -35,6 +35,15 @@ btn1.addEventListener("click", function (){
     counter1.style.display = "flex";
     counter1.innerText = "1";
 
+    if (Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText)
+        + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText) !== 0 ){
+        tg.MainButton.setText('Купити');
+        item = '1'
+        tg.MainButton.show()
+    }
+    else {
+        tg.MainButton.hide()
+    }
 
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
@@ -61,6 +70,17 @@ btn2.addEventListener("click", function (){
     //     item = "2";
     //     tg.MainButton.show();
     // }
+
+    if (Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText)
+        + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText) !== 0 ){
+        tg.MainButton.setText('Купити');
+        item = '2'
+        tg.MainButton.show()
+    }
+    else {
+        tg.MainButton.hide()
+    }
+
 })
 
 btn3.addEventListener("click", function (){
@@ -69,6 +89,16 @@ btn3.addEventListener("click", function (){
     plus_minus3.style.display = "flex";
     counter3.style.display = "flex";
     counter3.innerText = "1";
+
+    if (Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText)
+        + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText) !== 0 ){
+        tg.MainButton.setText('Купити');
+        item = '3'
+        tg.MainButton.show()
+    }
+    else {
+        tg.MainButton.hide()
+    }
 
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
@@ -87,6 +117,16 @@ btn4.addEventListener("click", function (){
     counter4.style.display = "flex";
     counter4.innerText = "1";
 
+    if (Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText)
+        + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText) !== 0 ){
+        tg.MainButton.setText('Купити');
+        item = '4'
+        tg.MainButton.show()
+    }
+    else {
+        tg.MainButton.hide()
+    }
+
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -103,6 +143,16 @@ btn5.addEventListener("click", function (){
     plus_minus5.style.display = "flex";
     counter5.style.display = "flex";
     counter5.innerText = "1";
+
+    if (Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText)
+        + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText) !== 0 ){
+        tg.MainButton.setText('Купити');
+        item = '5'
+        tg.MainButton.show()
+    }
+    else {
+        tg.MainButton.hide()
+    }
 
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
@@ -121,6 +171,16 @@ btn6.addEventListener("click", function (){
     counter6.style.display = "flex";
     counter6.innerText = "1";
 
+    if (Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText)
+        + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText) !== 0 ){
+        tg.MainButton.setText('Купити');
+        item = '6'
+        tg.MainButton.show()
+    }
+    else {
+        tg.MainButton.hide()
+    }
+
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -131,17 +191,17 @@ btn6.addEventListener("click", function (){
     // }
 })
 
-// Telegram.WebApp.onEvent("mainButtonClicked", function (){
-//     tg.sendData(item);
-// })
-//
-// let usercard = document.getElementById("usercard");
-//
-// let p = document.createElement("p");
-//
-// p.innerText = tg.initDataUnsafe.first_name + tg.DataUnsafe.last_name;
-//
-// usercard.appendChild(p);
+Telegram.WebApp.onEvent("mainButtonClicked", function (){
+    tg.sendData(item);
+})
+
+let usercard = document.getElementById("usercard");
+
+let p = document.createElement("p");
+
+p.innerText = tg.initDataUnsafe.first_name + tg.DataUnsafe.last_name;
+
+usercard.appendChild(p);
 
 let plus1 = document.getElementById("plus1");
 let plus2 = document.getElementById("plus2");
