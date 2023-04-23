@@ -8,13 +8,21 @@ tg.MainButton.color = "#2cab37";
 let item = "";
 
 var dict = {};
+var prices = {};
 
-dict['Item1'] = 0
-dict['Item2'] = 0
-dict['Item3'] = 0
-dict['Item4'] = 0
-dict['Item5'] = 0
-dict['Item6'] = 0
+dict['a-chip PREMIUM'] = 0
+dict['Datamars'] = 0
+dict['animal-id min'] = 0
+dict['a-chip PREMIUM cannula'] = 0
+dict['a-chip PREMIUM mini'] = 0
+dict['animal-id pro 2,12x12mm'] = 0
+
+prices['a-chip PREMIUM'] = 16500
+prices['Datamars'] = 18200
+prices['animal-id min'] = 11000
+prices['a-chip PREMIUM cannula'] = 13400
+prices['a-chip PREMIUM mini'] = 18200
+prices['animal-id pro 2,12x12mm'] = 10200
 
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
@@ -49,7 +57,13 @@ btn1.addEventListener("click", function (){
 
         tg.MainButton.show();
     }
-    dict['Item1'] = 1;
+    dict['a-chip PREMIUM'] = 1;
+
+    // let v = "";
+    // for (const [key, value] of Object.entries(dict)){
+    //     v = 1;
+    // }
+    // alert(typeof toString(v));
 
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
@@ -72,7 +86,7 @@ btn2.addEventListener("click", function (){
         tg.MainButton.setText('Купити');
         tg.MainButton.show();
     }
-    dict['Item2'] = 1;
+    dict['Datamars'] = 1;
 
 })
 
@@ -88,7 +102,7 @@ btn3.addEventListener("click", function (){
 
         tg.MainButton.show();
     }
-    dict['Item3'] = 1;
+    dict['animal-id min'] = 1;
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -110,7 +124,7 @@ btn4.addEventListener("click", function (){
         tg.MainButton.setText('Купити');
         tg.MainButton.show();
     }
-    dict['Item4'] = 1;
+    dict['a-chip PREMIUM cannula'] = 1;
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -132,7 +146,7 @@ btn5.addEventListener("click", function (){
         tg.MainButton.setText('Купити');
         tg.MainButton.show();
     }
-    dict['Item5'] = 1;
+    dict['a-chip PREMIUM mini'] = 1;
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -154,7 +168,7 @@ btn6.addEventListener("click", function (){
         tg.MainButton.setText('Купити');
         tg.MainButton.show();
     }
-    dict['Item6'] = 1;
+    dict['animal-id pro 2,12x12mm'] = 1;
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -175,42 +189,42 @@ let plus6 = document.getElementById("plus6");
 plus1.addEventListener("click", function () {
 
     counter1.innerText = Number(counter1.innerText) + 1;
-    dict['Item1'] = dict['Item1'] +1 ;
+    dict['a-chip PREMIUM'] = dict['a-chip PREMIUM'] +1 ;
 
 })
 
 plus2.addEventListener("click", function () {
 
     counter2.innerText = Number(counter2.innerText) + 1;
-    dict['Item2'] = dict['Item2'] +1 ;
+    dict['Datamars'] = dict['Datamars'] +1 ;
 
 })
 
 plus3.addEventListener("click", function () {
 
     counter3.innerText = Number(counter3.innerText) + 1;
-    dict['Item3'] = dict['Item3'] +1 ;
+    dict['animal-id min'] = dict['animal-id min'] +1 ;
 
 })
 
 plus4.addEventListener("click", function () {
 
     counter4.innerText = Number(counter4.innerText) + 1;
-    dict['Item4'] = dict['Item4'] +1 ;
+    dict['a-chip PREMIUM cannula'] = dict['a-chip PREMIUM cannula'] +1 ;
 
 })
 
 plus5.addEventListener("click", function () {
 
     counter5.innerText = Number(counter5.innerText) + 1;
-    dict['Item5'] = dict['Item5'] +1 ;
+    dict['a-chip PREMIUM mini'] = dict['a-chip PREMIUM mini'] +1 ;
 
 })
 
 plus6.addEventListener("click", function () {
 
     counter6.innerText = Number(counter6.innerText) + 1;
-    dict['Item5'] = dict['Item5'] +1 ;
+    dict['animal-id pro 2,12x12mm'] = dict['animal-id pro 2,12x12mm'] +1 ;
 
 })
 
@@ -338,7 +352,7 @@ minus6.addEventListener("click", function () {
 Telegram.WebApp.onEvent("mainButtonClicked", function (){
     let v = "";
     for (const [key, value] of Object.entries(dict)){
-        v = v + " " + key + "-" + value; 
+        v = v + "#" + key + ":" + value + ":" + prices[key];
     }
     tg.sendData(v);
 })
