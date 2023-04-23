@@ -231,8 +231,8 @@ minus1.addEventListener("click", function () {
         counter1.style.display = "none";
     }
 
-    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
-    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+    let sum = Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum = sum + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
 
     if (sum === 0){
         tg.MainButton.hide()
@@ -250,8 +250,8 @@ minus2.addEventListener("click", function () {
         counter2.style.display = "none";
     }
 
-    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
-    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+    let sum = Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum = sum + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
 
     if (sum === 0){
         tg.MainButton.hide()
@@ -269,8 +269,8 @@ minus3.addEventListener("click", function () {
         counter3.style.display = "none";
     }
 
-    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
-    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+    let sum = Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum = sum + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
 
     if (sum === 0){
         tg.MainButton.hide()
@@ -288,8 +288,8 @@ minus4.addEventListener("click", function () {
         counter4.style.display = "none";
     }
 
-    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
-    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+    let sum = Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum = sum + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
 
     if (sum === 0){
         tg.MainButton.hide()
@@ -307,8 +307,8 @@ minus5.addEventListener("click", function () {
         counter5.style.display = "none";
     }
 
-    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
-    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+    let sum = Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum = sum + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
 
     if (sum === 0){
         tg.MainButton.hide()
@@ -326,8 +326,8 @@ minus6.addEventListener("click", function () {
         counter6.style.display = "none";
     }
 
-    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
-    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+    let sum = Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum = sum + Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
 
     if (sum === 0){
         tg.MainButton.hide()
@@ -336,7 +336,7 @@ minus6.addEventListener("click", function () {
 })
 
 Telegram.WebApp.onEvent("mainButtonClicked", function (){
-    tg.sendData(item);
+    tg.sendData(dict);
 })
 let usercard = document.getElementById("usercard");
 
