@@ -7,6 +7,15 @@ tg.MainButton.color = "#2cab37";
 
 let item = "";
 
+var dict = {};
+
+dict['Item1'] = 0
+dict['Item2'] = 0
+dict['Item3'] = 0
+dict['Item4'] = 0
+dict['Item5'] = 0
+dict['Item6'] = 0
+
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
 let btn3 = document.getElementById("btn3");
@@ -35,6 +44,13 @@ btn1.addEventListener("click", function (){
     counter1.style.display = "flex";
     counter1.innerText = "1";
 
+    if (!tg.MainButton.isVisible){
+        tg.MainButton.setText('Купити');
+
+        tg.MainButton.show();
+    }
+    dict['Item1'] = 1;
+
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -52,14 +68,11 @@ btn2.addEventListener("click", function (){
     counter2.style.display = "flex";
     counter2.innerText = "1";
 
-    // if (tg.MainButton.isVisible){
-    //     tg.MainButton.hide();
-    // }
-    // else {
-    //     tg.MainButton.setText('Ви вибрали товар 2!');
-    //     item = "2";
-    //     tg.MainButton.show();
-    // }
+    if (!tg.MainButton.isVisible){
+        tg.MainButton.setText('Купити');
+        tg.MainButton.show();
+    }
+    dict['Item2'] = 1;
 
 })
 
@@ -70,6 +83,12 @@ btn3.addEventListener("click", function (){
     counter3.style.display = "flex";
     counter3.innerText = "1";
 
+    if (!tg.MainButton.isVisible){
+        tg.MainButton.setText('Купити');
+
+        tg.MainButton.show();
+    }
+    dict['Item3'] = 1;
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -87,6 +106,11 @@ btn4.addEventListener("click", function (){
     counter4.style.display = "flex";
     counter4.innerText = "1";
 
+    if (!tg.MainButton.isVisible){
+        tg.MainButton.setText('Купити');
+        tg.MainButton.show();
+    }
+    dict['Item4'] = 1;
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -104,6 +128,11 @@ btn5.addEventListener("click", function (){
     counter5.style.display = "flex";
     counter5.innerText = "1";
 
+    if (!tg.MainButton.isVisible){
+        tg.MainButton.setText('Купити');
+        tg.MainButton.show();
+    }
+    dict['Item5'] = 1;
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -121,6 +150,11 @@ btn6.addEventListener("click", function (){
     counter6.style.display = "flex";
     counter6.innerText = "1";
 
+    if (!tg.MainButton.isVisible){
+        tg.MainButton.setText('Купити');
+        tg.MainButton.show();
+    }
+    dict['Item6'] = 1;
     // if (tg.MainButton.isVisible){
     //     tg.MainButton.hide();
     // }
@@ -141,36 +175,42 @@ let plus6 = document.getElementById("plus6");
 plus1.addEventListener("click", function () {
 
     counter1.innerText = Number(counter1.innerText) + 1;
-    
+    dict['Item1'] = dict['Item1'] +1 ;
+
 })
 
 plus2.addEventListener("click", function () {
 
     counter2.innerText = Number(counter2.innerText) + 1;
+    dict['Item2'] = dict['Item2'] +1 ;
 
 })
 
 plus3.addEventListener("click", function () {
 
     counter3.innerText = Number(counter3.innerText) + 1;
+    dict['Item3'] = dict['Item3'] +1 ;
 
 })
 
 plus4.addEventListener("click", function () {
 
     counter4.innerText = Number(counter4.innerText) + 1;
+    dict['Item4'] = dict['Item4'] +1 ;
 
 })
 
 plus5.addEventListener("click", function () {
 
     counter5.innerText = Number(counter5.innerText) + 1;
+    dict['Item5'] = dict['Item5'] +1 ;
 
 })
 
 plus6.addEventListener("click", function () {
 
     counter6.innerText = Number(counter6.innerText) + 1;
+    dict['Item5'] = dict['Item5'] +1 ;
 
 })
 
@@ -190,6 +230,14 @@ minus1.addEventListener("click", function () {
         plus_minus1.style.display = "none";
         counter1.style.display = "none";
     }
+
+    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+
+    if (sum === 0){
+        tg.MainButton.hide()
+    }
+
 })
 
 minus2.addEventListener("click", function () {
@@ -200,6 +248,13 @@ minus2.addEventListener("click", function () {
         btn2.style.display = "inline-block";
         plus_minus2.style.display = "none";
         counter2.style.display = "none";
+    }
+
+    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+
+    if (sum === 0){
+        tg.MainButton.hide()
     }
 
 })
@@ -214,6 +269,13 @@ minus3.addEventListener("click", function () {
         counter3.style.display = "none";
     }
 
+    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+
+    if (sum === 0){
+        tg.MainButton.hide()
+    }
+
 })
 
 minus4.addEventListener("click", function () {
@@ -224,6 +286,13 @@ minus4.addEventListener("click", function () {
         btn4.style.display = "inline-block";
         plus_minus4.style.display = "none";
         counter4.style.display = "none";
+    }
+
+    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+
+    if (sum === 0){
+        tg.MainButton.hide()
     }
 
 })
@@ -238,6 +307,13 @@ minus5.addEventListener("click", function () {
         counter5.style.display = "none";
     }
 
+    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+
+    if (sum === 0){
+        tg.MainButton.hide()
+    }
+
 })
 
 minus6.addEventListener("click", function () {
@@ -248,6 +324,13 @@ minus6.addEventListener("click", function () {
         btn6.style.display = "inline-block";
         plus_minus6.style.display = "none";
         counter6.style.display = "none";
+    }
+
+    sum += Number(counter1.innerText) + Number(counter2.innerText) + Number(counter3.innerText);
+    sum += Number(counter4.innerText) + Number(counter5.innerText) + Number(counter6.innerText);
+
+    if (sum === 0){
+        tg.MainButton.hide()
     }
 
 })
