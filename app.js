@@ -336,7 +336,11 @@ minus6.addEventListener("click", function () {
 })
 
 Telegram.WebApp.onEvent("mainButtonClicked", function (){
-    tg.sendData(dict);
+    let v = "";
+    for (const [key, value] of Object.entries(dict)){
+        v = v + " " + key + "-" + toString(value);
+    }
+    tg.sendData(v);
 })
 let usercard = document.getElementById("usercard");
 
