@@ -13,7 +13,7 @@ body {
 .inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 200px 200px 200px;
+    grid-template-rows: auto;
 }
 
 .img {
@@ -94,4 +94,12 @@ body {
 
 .absolute {
     position: absolute;
+}
+
+label {
+    display: block;
+    font-size: 10px;
+    font-family: Montserrat, serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
