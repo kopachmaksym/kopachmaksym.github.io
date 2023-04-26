@@ -333,7 +333,7 @@ minus6.addEventListener("click", function () {
 
 Telegram.WebApp.onEvent("mainButtonClicked", function (){
 
-    Telegram.WebApp.showAlert(document.getElementsByClassName("inner").style.display);
+    Telegram.WebApp.showAlert(document.getElementById("inner").style.display);
     
     if(document.getElementById("inner").style.display === "grid"){
         Telegram.WebApp.showAlert("Alert 2");
