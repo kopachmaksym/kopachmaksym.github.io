@@ -12,9 +12,13 @@ body {
 
 /*Всі товари*/
 
-.inner {
+#inner {
     /*display: none;*/
     display: grid;
+}
+
+.inner {
+    
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
 }
@@ -108,11 +112,14 @@ body {
 /*Корзинка*/
 
 .basket {
-    display: none;
     width: 390px;
     height: 150px;
     /*z-index: 1;*/
     /*background-color: green;*/
+}
+
+#basket{
+    display: none;
 }
 
 .basket-menu{
