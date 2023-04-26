@@ -4,7 +4,7 @@ tg.expand();
 
 tg.MainButton.textColor = "#FFFFFF";
 tg.MainButton.color = "#2cab37";
-tg.showAlert(document.getElementsByClassName("inner").style.display === "grid");
+// tg.showAlert(document.getElementsByClassName("inner").style.display === "grid");
 let item = "";
 
 var dict = {};
