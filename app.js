@@ -332,7 +332,7 @@ minus6.addEventListener("click", function () {
 })
 
 Telegram.WebApp.onEvent("mainButtonClicked", function (){
-    Telegram.WebApp.showAlert("Alert 2");
+//     Telegram.WebApp.showAlert("Alert 2");
 //     Telegram.WebApp.showAlert(document.getElementById("inner").style.display);
     
     if(document.getElementById("inner").style.display == "grid"){
