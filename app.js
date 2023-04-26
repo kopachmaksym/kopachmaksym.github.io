@@ -339,7 +339,7 @@ Telegram.WebApp.onEvent("mainButtonClicked", function (){
         help = 1;
         Telegram.WebApp.showAlert("Alert 2");
         document.getElementById("inner").style.display = "none";
-        document.getElementById("basket").style.display = null;
+        document.getElementById("basket").style.display = "block";
         
     }
     else {
