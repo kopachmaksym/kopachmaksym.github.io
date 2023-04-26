@@ -7,6 +7,8 @@ tg.MainButton.color = "#2cab37";
 
 let item = "";
 
+Telegram.WebApp.showAlert("Alert");
+
 var dict = {};
 var prices = {};
 
