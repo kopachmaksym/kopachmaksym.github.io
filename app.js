@@ -4,7 +4,7 @@ tg.expand();
 
 tg.MainButton.textColor = "#FFFFFF";
 tg.MainButton.color = "#2cab37";
-
+tg.showAlert(document.getElementsByClassName("inner").style.display === "grid");
 let item = "";
 
 var dict = {};
@@ -58,7 +58,7 @@ btn1.addEventListener("click", function (){
     plus_minus1.style.display = "flex";
     counter1.style.display = "flex";
     counter1.innerText = "1";
-    order1.style.display = "";
+    order1.style.display = null;
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -75,7 +75,7 @@ btn2.addEventListener("click", function (){
     plus_minus2.style.display = "flex";
     counter2.style.display = "flex";
     counter2.innerText = "1";
-    order2.style.display = "";
+    order2.style.display = null;
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -91,7 +91,7 @@ btn3.addEventListener("click", function (){
     plus_minus3.style.display = "flex";
     counter3.style.display = "flex";
     counter3.innerText = "1";
-    order3.style.display = "";
+    order3.style.display = null;
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -108,7 +108,7 @@ btn4.addEventListener("click", function (){
     plus_minus4.style.display = "flex";
     counter4.style.display = "flex";
     counter4.innerText = "1";
-    order4.style.display = "";
+    order4.style.display = null;
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -124,7 +124,7 @@ btn5.addEventListener("click", function (){
     plus_minus5.style.display = "flex";
     counter5.style.display = "flex";
     counter5.innerText = "1";
-    order5.style.display = "";
+    order5.style.display = null;
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -139,7 +139,7 @@ btn6.addEventListener("click", function (){
     plus_minus6.style.display = "flex";
     counter6.style.display = "flex";
     counter6.innerText = "1";
-    order6.style.display = "";
+    order6.style.display = null;
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -351,10 +351,9 @@ minus6.addEventListener("click", function () {
 
 tg.MainButton.onclick(function (){
 
-    tg.showAlert("Done");
     if(document.getElementsByClassName("inner").style.display === "grid"){
         document.getElementsByClassName("inner").style.display = "none";
-        document.getElementsByClassName("basket").style.display = "";
+        document.getElementsByClassName("basket").style.display = null;
     }
     else {
         let v = "";
