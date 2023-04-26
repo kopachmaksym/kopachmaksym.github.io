@@ -332,18 +332,14 @@ minus6.addEventListener("click", function () {
 })
 
 Telegram.WebApp.onEvent("mainButtonClicked", function (){
-//     Telegram.WebApp.showAlert("Alert 2");
-//     Telegram.WebApp.showAlert(document.getElementById("inner").style.display);
     
     if(help === 0){
-        help = 1;
-        Telegram.WebApp.showAlert("Alert 2");
+        help = 1; 
         document.getElementById("inner").style.display = "none";
         document.getElementById("basket").style.display = "block";
         
     }
     else {
-        Telegram.WebApp.showAlert("Alert 3");
         let v = "";
         for (const [key, value] of Object.entries(dict)){
             v = v + "#" + key + ":" + value + ":" + prices[key];
@@ -354,24 +350,6 @@ Telegram.WebApp.onEvent("mainButtonClicked", function (){
 
 
 })
-
-// Telegram.WebApp.MainButton.onclick(function (){
-
-//     if(document.getElementsByClassName("inner").style.display === "grid"){
-//         document.getElementsByClassName("inner").style.display = "none";
-//         document.getElementsByClassName("basket").style.display = null;
-//     }
-//     else {
-//         let v = "";
-//         for (const [key, value] of Object.entries(dict)){
-//             v = v + "#" + key + ":" + value + ":" + prices[key];
-//         }
-//         tg.sendData(v);
-//         tg.close();
-//     }
-
-
-// })
 
 let usercard = document.getElementById("usercard");
 
