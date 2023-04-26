@@ -335,10 +335,10 @@ Telegram.WebApp.onEvent("mainButtonClicked", function (){
 
     Telegram.WebApp.showAlert(document.getElementsByClassName("inner").style.display);
     
-    if(document.getElementsByClassName("inner").style.display === "grid"){
+    if(document.getElementById("inner").style.display === "grid"){
         Telegram.WebApp.showAlert("Alert 2");
-        document.getElementsByClassName("inner").style.display = "none";
-        document.getElementsByClassName("basket").style.display = "";
+        document.getElementById("inner").style.display = "none";
+        document.getElementById("basket").style.display = null;
         
     }
     else {
