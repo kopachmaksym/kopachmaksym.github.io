@@ -351,7 +351,7 @@ minus6.addEventListener("click", function () {
 //
 // })
 
-tg.MainButton.onclick(function (){
+Telegram.WebApp.MainButton.onclick(function (){
 
     if(document.getElementsByClassName("inner").style.display === "grid"){
         document.getElementsByClassName("inner").style.display = "none";
