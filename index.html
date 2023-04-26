@@ -8,6 +8,127 @@
 </head>
 <body>
     <div class="container">
+        <div class="basket" id="basket">
+
+            <nav class="basket-menu">
+                <ul class="basket-left">
+                  <li>Кошик</li>
+                </ul>
+                <ul class="basket-right">
+                    <li id="edit-button" onclick="click_edit()">Змінити</li>
+                </ul>
+            </nav>
+
+            <div class="choosed-items">
+                <div class="order" id="order1">
+                    <div class="order-left">
+                        <img src="test/order-test.png">
+                        <div class="text">
+                            <div class="order-name">
+                                <label>a-chip premium 2</label>
+                                <label class="order-count"></label>
+                            </div>
+                            <div class="small-desc">
+                                <label>Hi!</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-right">
+                        <label>165UAH</label>
+                    </div>
+                </div>
+                <div class="order" id="order2">
+                    <div class="order-left">
+                        <img src="test/order-test.png">
+                        <div class="text">
+                            <div class="order-name">
+                                <label>Datamars 2</label>
+                                <label class="order-count"></label>
+                            </div>
+                            <div class="small-desc">
+                                <label>Hi!</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-right">
+                        <label>182UAH</label>
+                    </div>
+                </div>
+                <div class="order" id="order3">
+                    <div class="order-left">
+                        <img src="test/order-test.png">
+                        <div class="text">
+                            <div class="order-name">
+                                <label>animal-id mini</label>
+                                <label class="order-count"></label>
+                            </div>
+                            <div class="small-desc">
+                                <label>Hi!</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-right">
+                        <label>110UAH</label>
+                    </div>
+                </div>
+                <div class="order" id="order4">
+                    <div class="order-left">
+                        <img src="test/order-test.png">
+                        <div class="text">
+                            <div class="order-name">
+                                <label>a-chip premium</label>
+                                <label class="order-count"></label>
+                            </div>
+                            <div class="small-desc">
+                                <label>Hi!</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-right">
+                        <label>134UAH</label>
+                    </div>
+                </div>
+                <div class="order" id="order5">
+                    <div class="order-left">
+                        <img src="test/order-test.png">
+                        <div class="text">
+                            <div class="order-name">
+                                <label>a-chip premium mini</label>
+                                <label class="order-count"></label>
+                            </div>
+                            <div class="small-desc">
+                                <label>Hi!</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-right">
+                        <label>182UAH</label>
+                    </div>
+                </div>
+                <div class="order" id="order6">
+                    <div class="order-left">
+                        <img src="test/order-test.png">
+                        <div class="text">
+                            <div class="order-name">
+                                <label>animal-id pro</label>
+                                <label class="order-count"></label>
+                            </div>
+                            <div class="small-desc">
+                                <label>Hi!</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-right">
+                        <label>102UAH</label>
+                    </div>
+                </div>
+            </div>
+            <div class="text-input">
+                <textarea oninput="auto_grow(this)" placeholder="Коментар"></textarea>
+            </div>
+        </div>
+
+
         <div class="inner">
             <div class="item">
                 <div class="absolute">
@@ -26,7 +147,7 @@
                     <div class="counter" id="counter2">0</div>
                 </div>
                 <img src="../img/Datamars2.jpg" alt="datamars" class="img">
-                <label>Datamars 2 * 165UAH</label>
+                <label>Datamars 2 * 182UAH</label>
                 <button class="btn" id="btn2">Add</button>
                 <div class="count" id="count2">
                     <button class="minus" id="minus2">-</button>
@@ -38,7 +159,7 @@
                     <div class="counter" id="counter3">0</div>
                 </div>
                 <img src="../img/id-mini.png" alt="animal-id_min" class="img">
-                <label>animal-id mini * 165UAH</label>
+                <label>animal-id mini * 110UAH</label>
                 <button class="btn" id="btn3">Add</button>
                 <div class="count" id="count3">
                     <button class="minus" id="minus3">-</button>
@@ -50,7 +171,7 @@
                     <div class="counter" id="counter4">0</div>
                 </div>
                 <img src="../img/chip_premium.jpg" alt="premium_cannula" class="img">
-                <label>a-chip premium * 165UAH</label>
+                <label>a-chip premium * 134UAH</label>
                 <button class="btn" id="btn4">Add</button>
                 <div class="count" id="count4">
                     <button class="minus" id="minus4">-</button>
@@ -62,7 +183,7 @@
                     <div class="counter" id="counter5">0</div>
                 </div>
                 <img src="../img/premium_mini.jpg" alt="achip_premium_mini" class="img">
-                <label>a-chip premium mini * 165UAH</label>
+                <label>a-chip premium mini * 182UAH</label>
                 <button class="btn" id="btn5">Add</button>
                 <div class="count" id="count5">
                     <button class="minus" id="minus5">-</button>
@@ -74,7 +195,7 @@
                     <div class="counter" id="counter6">0</div>
                 </div>
                 <img src="../img/id-pro.jpg" alt="achip_pro_one" class="img">
-                <label>animal-id pro * 165UAH</label>
+                <label>animal-id pro * 102UAH</label>
                 <button class="btn" id="btn6">Add</button>
                 <div class="count" id="count6">
                     <button class="minus" id="minus6">-</button>
