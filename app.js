@@ -7,8 +7,6 @@ tg.MainButton.color = "#2cab37";
 
 let item = "";
 
-Telegram.WebApp.showAlert("Alert");
-
 var dict = {};
 var prices = {};
 
@@ -335,17 +333,22 @@ minus6.addEventListener("click", function () {
 
 Telegram.WebApp.onEvent("mainButtonClicked", function (){
 
-
+    Telegram.WebApp.showAlert("Alert 1");
+    
     if(document.getElementsByClassName("inner").style.display === "grid"){
+        Telegram.WebApp.showAlert("Alert 2");
         document.getElementsByClassName("inner").style.display = "none";
         document.getElementsByClassName("basket").style.display = "";
+        
     }
     else {
+        Telegram.WebApp.showAlert("Alert 3");
         let v = "";
         for (const [key, value] of Object.entries(dict)){
             v = v + "#" + key + ":" + value + ":" + prices[key];
         }
         tg.sendData(v);
+        
     }
 
 
