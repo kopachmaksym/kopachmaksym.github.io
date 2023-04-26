@@ -160,7 +160,7 @@ plus1.addEventListener("click", function () {
 
     counter1.innerText = Number(counter1.innerText) + 1;
     dict['a-chip PREMIUM'] = dict['a-chip PREMIUM'] +1 ;
-    order1.getElementsByClassName("order-count").innerText = Number(counter1.innerText) + "x";
+    document.getElementById("order-count1").innerText = Number(counter1.innerText) + "x";
 
 })
 
@@ -168,7 +168,7 @@ plus2.addEventListener("click", function () {
 
     counter2.innerText = Number(counter2.innerText) + 1;
     dict['Datamars'] = dict['Datamars'] +1;
-    order2.getElementsByClassName("order-count").innerText = Number(counter2.innerText) + "x";
+    document.getElementById("order-count2").innerText = Number(counter1.innerText) + "x";
 
 })
 
@@ -176,7 +176,7 @@ plus3.addEventListener("click", function () {
 
     counter3.innerText = Number(counter3.innerText) + 1;
     dict['animal-id min'] = dict['animal-id min'] +1 ;
-    order3.getElementsByClassName("order-count").innerText = Number(counter3.innerText) + "x";
+    document.getElementById("order-count3").innerText = Number(counter1.innerText) + "x";
 
 })
 
@@ -184,7 +184,7 @@ plus4.addEventListener("click", function () {
 
     counter4.innerText = Number(counter4.innerText) + 1;
     dict['a-chip PREMIUM cannula'] = dict['a-chip PREMIUM cannula'] +1 ;
-    order4.getElementsByClassName("order-count").innerText = Number(counter4.innerText) + "x";
+    document.getElementById("order-count4").innerText = Number(counter1.innerText) + "x";
 
 })
 
@@ -192,7 +192,7 @@ plus5.addEventListener("click", function () {
 
     counter5.innerText = Number(counter5.innerText) + 1;
     dict['a-chip PREMIUM mini'] = dict['a-chip PREMIUM mini'] +1 ;
-    order5.getElementsByClassName("order-count").innerText = Number(counter5.innerText) + "x";
+    document.getElementById("order-count5").innerText = Number(counter1.innerText) + "x";
 
 })
 
@@ -200,7 +200,7 @@ plus6.addEventListener("click", function () {
 
     counter6.innerText = Number(counter6.innerText) + 1;
     dict['animal-id pro 2,12x12mm'] = dict['animal-id pro 2,12x12mm'] +1 ;
-    order6.getElementsByClassName("order-count").innerText = Number(counter6.innerText) + "x";
+    document.getElementById("order-count6").innerText = Number(counter1.innerText) + "x";
 
 })
 
