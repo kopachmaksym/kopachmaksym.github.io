@@ -4,7 +4,7 @@ tg.expand();
 
 tg.MainButton.textColor = "#FFFFFF";
 tg.MainButton.color = "#2cab37";
-// tg.showAlert(document.getElementsByClassName("inner").style.display === "grid");
+
 let item = "";
 
 var dict = {};
@@ -45,12 +45,12 @@ let counter4 = document.getElementById("counter4");
 let counter5 = document.getElementById("counter5");
 let counter6 = document.getElementById("counter6");
 
-let order1 = document.getElementById("order1");
-let order2 = document.getElementById("order2");
-let order3 = document.getElementById("order3");
-let order4 = document.getElementById("order4");
-let order5 = document.getElementById("order5");
-let order6 = document.getElementById("order6");
+let order1 = document.querySelector("#order1");
+let order2 = document.querySelector("#order2");
+let order3 = document.querySelector("#order3");
+let order4 = document.querySelector("#order4");
+let order5 = document.querySelector("#order5");
+let order6 = document.querySelector("#order6");
 
 btn1.addEventListener("click", function (){
 
@@ -58,7 +58,7 @@ btn1.addEventListener("click", function (){
     plus_minus1.style.display = "flex";
     counter1.style.display = "flex";
     counter1.innerText = "1";
-    order1.style.display = null;
+    order1.style.display = "block";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -75,7 +75,7 @@ btn2.addEventListener("click", function (){
     plus_minus2.style.display = "flex";
     counter2.style.display = "flex";
     counter2.innerText = "1";
-    order2.style.display = null;
+    order2.style.display = "block";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -91,7 +91,7 @@ btn3.addEventListener("click", function (){
     plus_minus3.style.display = "flex";
     counter3.style.display = "flex";
     counter3.innerText = "1";
-    order3.style.display = null;
+    order3.style.display = "block";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -108,7 +108,7 @@ btn4.addEventListener("click", function (){
     plus_minus4.style.display = "flex";
     counter4.style.display = "flex";
     counter4.innerText = "1";
-    order4.style.display = null;
+    order4.style.display = "block";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -124,7 +124,7 @@ btn5.addEventListener("click", function (){
     plus_minus5.style.display = "flex";
     counter5.style.display = "flex";
     counter5.innerText = "1";
-    order5.style.display = null;
+    order5.style.display = "block";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -139,7 +139,7 @@ btn6.addEventListener("click", function (){
     plus_minus6.style.display = "flex";
     counter6.style.display = "flex";
     counter6.innerText = "1";
-    order6.style.display = null;
+    order6.style.display = "block";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
