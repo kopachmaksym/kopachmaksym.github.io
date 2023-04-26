@@ -142,11 +142,18 @@ body {
 }
 
 .basket-right{
+    float: right;
+}
 
+#edit-button button {
+    background: none;
+    border: none;
     font-weight: bold;
     color: #2cab37;
     float: right;
+    padding-top: 0;
     padding-right: 20px;
+    font-size: 18px;
 }
 
 ul {
