@@ -332,30 +332,13 @@ minus6.addEventListener("click", function () {
     }
 
 })
-//
-// Telegram.WebApp.onEvent("mainButtonClicked", function (){
-//
-//
-//     if(document.getElementsByClassName("inner").style.display === "grid"){
-//         document.getElementsByClassName("inner").style.display = "none";
-//         document.getElementsByClassName("basket").style.display = "";
-//     }
-//     else {
-//         let v = "";
-//         for (const [key, value] of Object.entries(dict)){
-//             v = v + "#" + key + ":" + value + ":" + prices[key];
-//         }
-//         tg.sendData(v);
-//     }
-//
-//
-// })
 
-Telegram.WebApp.MainButton.onclick(function (){
+Telegram.WebApp.onEvent("mainButtonClicked", function (){
+
 
     if(document.getElementsByClassName("inner").style.display === "grid"){
         document.getElementsByClassName("inner").style.display = "none";
-        document.getElementsByClassName("basket").style.display = null;
+        document.getElementsByClassName("basket").style.display = "";
     }
     else {
         let v = "";
@@ -363,11 +346,28 @@ Telegram.WebApp.MainButton.onclick(function (){
             v = v + "#" + key + ":" + value + ":" + prices[key];
         }
         tg.sendData(v);
-        tg.close();
     }
 
 
 })
+
+// Telegram.WebApp.MainButton.onclick(function (){
+
+//     if(document.getElementsByClassName("inner").style.display === "grid"){
+//         document.getElementsByClassName("inner").style.display = "none";
+//         document.getElementsByClassName("basket").style.display = null;
+//     }
+//     else {
+//         let v = "";
+//         for (const [key, value] of Object.entries(dict)){
+//             v = v + "#" + key + ":" + value + ":" + prices[key];
+//         }
+//         tg.sendData(v);
+//         tg.close();
+//     }
+
+
+// })
 
 let usercard = document.getElementById("usercard");
 
