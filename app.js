@@ -351,6 +351,7 @@ minus6.addEventListener("click", function () {
 
 tg.MainButton.onclick(function (){
 
+    tg.showAlert("Done");
     if(document.getElementsByClassName("inner").style.display === "grid"){
         document.getElementsByClassName("inner").style.display = "none";
         document.getElementsByClassName("basket").style.display = "";
