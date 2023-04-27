@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    max-width: 390px;
+    max-width: 400px;
 }
 
 /*Всі товари*/
@@ -113,7 +113,7 @@ body {
 /*Корзинка*/
 
 .basket {
-    width: 390px;
+    width: 400px;
     height: 150px;
     /*z-index: 1;*/
     /*background-color: green;*/
