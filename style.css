@@ -29,6 +29,7 @@ body {
 
 .item {
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .counter {
