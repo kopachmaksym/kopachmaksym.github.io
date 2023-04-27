@@ -52,6 +52,13 @@ let order4 = document.querySelector("#order4");
 let order5 = document.querySelector("#order5");
 let order6 = document.querySelector("#order6");
 
+let value1 = document.getElementById("value1");
+let value2 = document.getElementById("value2");
+let value3 = document.getElementById("value3");
+let value4 = document.getElementById("value4");
+let value5 = document.getElementById("value5");
+let value6 = document.getElementById("value6");
+
 btn1.addEventListener("click", function (){
 
     btn1.style.display = "none";
@@ -59,6 +66,7 @@ btn1.addEventListener("click", function (){
     counter1.style.display = "flex";
     counter1.innerText = "1";
     order1.style.display = "block";
+    value1.innerText = prices['a-chip Premium'] + "UAH";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -76,7 +84,8 @@ btn2.addEventListener("click", function (){
     counter2.style.display = "flex";
     counter2.innerText = "1";
     order2.style.display = "block";
-
+    value2.innerText = prices['Datamars'] + "UAH";
+    
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
         tg.MainButton.show();
@@ -92,6 +101,7 @@ btn3.addEventListener("click", function (){
     counter3.style.display = "flex";
     counter3.innerText = "1";
     order3.style.display = "block";
+    value3.innerText = prices['animal-id min'] + "UAH";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -109,6 +119,7 @@ btn4.addEventListener("click", function (){
     counter4.style.display = "flex";
     counter4.innerText = "1";
     order4.style.display = "block";
+    value4.innerText = prices['a-chip PREMUIUM cannula'] + "UAH";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -125,6 +136,7 @@ btn5.addEventListener("click", function (){
     counter5.style.display = "flex";
     counter5.innerText = "1";
     order5.style.display = "block";
+    value5.innerText = prices['a-chip PREMUIUM mini'] + "UAH";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -140,6 +152,7 @@ btn6.addEventListener("click", function (){
     counter6.style.display = "flex";
     counter6.innerText = "1";
     order6.style.display = "block";
+    value6.innerText = prices['animal-id pro 2,12x12mm'] + "UAH";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -161,6 +174,7 @@ plus1.addEventListener("click", function () {
     counter1.innerText = Number(counter1.innerText) + 1;
     dict['a-chip PREMIUM'] = dict['a-chip PREMIUM'] +1 ;
     document.getElementById("order-count1").innerText = Number(counter1.innerText) + "x";
+    value1.innerText = (prices['a-chip Premium']*Number(counter1.innerText)) + "UAH";
 
 })
 
@@ -169,6 +183,7 @@ plus2.addEventListener("click", function () {
     counter2.innerText = Number(counter2.innerText) + 1;
     dict['Datamars'] = dict['Datamars'] +1;
     document.getElementById("order-count2").innerText = Number(counter2.innerText) + "x";
+    value2.innerText = (prices['Datamars']*Number(counter2.innerText)) + "UAH";
 
 })
 
@@ -177,6 +192,7 @@ plus3.addEventListener("click", function () {
     counter3.innerText = Number(counter3.innerText) + 1;
     dict['animal-id min'] = dict['animal-id min'] +1 ;
     document.getElementById("order-count3").innerText = Number(counter3.innerText) + "x";
+    value3.innerText = (prices['animal-id min']*Number(counter3.innerText)) + "UAH";
 
 })
 
@@ -185,6 +201,7 @@ plus4.addEventListener("click", function () {
     counter4.innerText = Number(counter4.innerText) + 1;
     dict['a-chip PREMIUM cannula'] = dict['a-chip PREMIUM cannula'] +1 ;
     document.getElementById("order-count4").innerText = Number(counter4.innerText) + "x";
+    value4.innerText = (prices['a-chip PREMIUM cannula']*Number(counter4.innerText)) + "UAH";
 
 })
 
@@ -193,6 +210,7 @@ plus5.addEventListener("click", function () {
     counter5.innerText = Number(counter5.innerText) + 1;
     dict['a-chip PREMIUM mini'] = dict['a-chip PREMIUM mini'] +1 ;
     document.getElementById("order-count5").innerText = Number(counter5.innerText) + "x";
+    value5.innerText = (prices['a-chip PREMIUM mini']*Number(counter5.innerText)) + "UAH";
 
 })
 
@@ -201,6 +219,7 @@ plus6.addEventListener("click", function () {
     counter6.innerText = Number(counter6.innerText) + 1;
     dict['animal-id pro 2,12x12mm'] = dict['animal-id pro 2,12x12mm'] +1 ;
     document.getElementById("order-count6").innerText = Number(counter6.innerText) + "x";
+    value6.innerText = (prices['animal-id pro 2,12x12mm']*Number(counter6.innerText)) + "UAH";
 
 })
 
@@ -214,6 +233,7 @@ let minus6 = document.getElementById("minus6");
 minus1.addEventListener("click", function () {
 
     counter1.innerText = Number(counter1.innerText) - 1;
+    value1.innerText = (prices['a-chip Premium']*Number(counter1.innerText)) + "UAH";
 
     if (Number(counter1.innerText) === 0){
         btn1.style.display = "inline-block";
@@ -234,6 +254,7 @@ minus1.addEventListener("click", function () {
 minus2.addEventListener("click", function () {
 
     counter2.innerText = Number(counter2.innerText) - 1;
+    value2.innerText = (prices['Datamars']*Number(counter2.innerText)) + "UAH";
 
     if (Number(counter2.innerText) === 0){
         btn2.style.display = "inline-block";
@@ -254,6 +275,7 @@ minus2.addEventListener("click", function () {
 minus3.addEventListener("click", function () {
 
     counter3.innerText = Number(counter3.innerText) - 1;
+    value3.innerText = (prices['animal-id min']*Number(counter3.innerText)) + "UAH";
 
     if (Number(counter3.innerText) === 0){
         btn3.style.display = "inline-block";
@@ -274,6 +296,7 @@ minus3.addEventListener("click", function () {
 minus4.addEventListener("click", function () {
 
     counter4.innerText = Number(counter4.innerText) - 1;
+    value4.innerText = (prices['a-chip PREMIUM cannula']*Number(counter4.innerText)) + "UAH";
 
     if (Number(counter4.innerText) === 0){
         btn4.style.display = "inline-block";
@@ -294,6 +317,7 @@ minus4.addEventListener("click", function () {
 minus5.addEventListener("click", function () {
 
     counter5.innerText = Number(counter5.innerText) - 1;
+    value5.innerText = (prices['a-chip PREMIUM mini']*Number(counter5.innerText)) + "UAH";
 
     if (Number(counter5.innerText) === 0){
         btn5.style.display = "inline-block";
@@ -314,6 +338,7 @@ minus5.addEventListener("click", function () {
 minus6.addEventListener("click", function () {
 
     counter6.innerText = Number(counter6.innerText) - 1;
+    value6.innerText = (prices['animal-id pro 2,12x12mm']*Number(counter6.innerText)) + "UAH";
 
     if (Number(counter6.innerText) === 0){
         btn6.style.display = "inline-block";
