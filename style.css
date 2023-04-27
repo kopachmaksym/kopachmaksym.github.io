@@ -115,29 +115,29 @@ body {
 /*Корзинка*/
 
 .basket {
-    width: 390px;
+/*     width: 390px; */
     height: 150px;
 }
 
 #basket{
     display: none;
     width: 100%; /*must*/
+/*     height: 150px; */
 }
 
 .basket-menu{
 
     font-family: Arial;
-/*     height: 35px; */
-/*     padding-top: 20px;
-    padding-bottom: 20px; */
-    padding-top: 5%; /*must*/
-    padding-bottom: 5%; /*must*/
+    height: 35px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+/*     padding-top: 5%; /*must*/
+    padding-bottom: 5%; /*must*/ */
 }
 
 .basket-left{
     font-weight: bold;
-/*     padding-left: 50px; */
-    padding-left: 10%;
+    padding-left: 50px;
 }
 
 .order-count{
@@ -155,8 +155,7 @@ body {
     color: #2cab37;
     float: right;
     padding-top: 0;
-/*     padding-right: 20px; */
-    margin-right: 7%;
+    padding-right: 20px;
     font-size: 18px;
 }
 
@@ -170,11 +169,11 @@ ul {
 
 .order {
     display: none;
-/*     height: 50px; */
+    height: 50px;
     font-family: Lucida Sans, serif;
     font-size: 14px;
     font-weight: bold;
-    padding-bottom: 3%;
+    padding-bottom: 20px;
 }
 
 .order img{
