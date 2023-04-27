@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    max-width: 390px;
+    max-width: 100%;
 }
 
 /*Всі товари*/
@@ -18,13 +18,13 @@ body {
 }
 
 .inner {
-    
+    align-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
 }
 
 .img {
-    width: 195px;
+    width: 80%;
 }
 
 .item {
@@ -39,7 +39,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    left: 140px;
+    left: 325%;
     width: 40px;
     height: 40px;
     background: rgb(248, 168, 24);
@@ -53,7 +53,7 @@ body {
 
 .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 5% 10%;
     border: none;
     background: rgb(248, 168, 24);
     border-radius: 10px;
@@ -75,7 +75,7 @@ body {
     display: inline-block;
     border: none;
     background: rgb(248, 168, 24);
-    padding: 10px 15px;
+    padding: 5% 7%;
     border-radius: 10px;
     color: #fff;
     text-transform: uppercase;
@@ -87,7 +87,7 @@ body {
     margin-right: 5px;
     border: none;
     background: rgb(255,0,0);
-    padding: 10px 15px;
+    padding: 5% 8%;
     border-radius: 10px;
     color: #fff;
     text-transform: uppercase;
@@ -106,8 +106,10 @@ body {
     display: block;
     font-size: 10px;
     font-family: Montserrat, serif;
-    padding-top: 10px;
-    padding-bottom: 10px;
+/*     padding-top: 10px;
+    padding-bottom: 10px; */
+    padding-top: 5%; /*must*/
+    padding-bottom: 5%; /*must*/
 }
 
 /*Корзинка*/
@@ -119,19 +121,23 @@ body {
 
 #basket{
     display: none;
+    width: 100%; /*must*/
 }
 
 .basket-menu{
 
     font-family: Arial;
-    height: 35px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+/*     height: 35px; */
+/*     padding-top: 20px;
+    padding-bottom: 20px; */
+    padding-top: 5%; /*must*/
+    padding-bottom: 5%; /*must*/
 }
 
 .basket-left{
     font-weight: bold;
-    padding-left: 50px;
+/*     padding-left: 50px; */
+    padding-left: 10%;
 }
 
 .order-count{
@@ -149,7 +155,8 @@ body {
     color: #2cab37;
     float: right;
     padding-top: 0;
-    padding-right: 20px;
+/*     padding-right: 20px; */
+    margin-right: 7%;
     font-size: 18px;
 }
 
@@ -163,11 +170,11 @@ ul {
 
 .order {
     display: none;
-    height: 50px;
+/*     height: 50px; */
     font-family: Lucida Sans, serif;
     font-size: 14px;
     font-weight: bold;
-    padding-bottom: 20px;
+    padding-bottom: 3%;
 }
 
 .order img{
@@ -200,6 +207,7 @@ ul {
 }
 
 .text-input {
+    width: 100%;
     border-top: solid;
     border-bottom: solid;
 }
