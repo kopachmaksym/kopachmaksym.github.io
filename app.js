@@ -1,7 +1,7 @@
 let tg = window.Telegram.WebApp;
 
 tg.expand();
-window.Telegram.WebApp.BackButton.show();
+
 tg.MainButton.textColor = "#FFFFFF";
 tg.MainButton.color = "#2cab37";
 
@@ -332,12 +332,13 @@ minus6.addEventListener("click", function () {
 })
 
 Telegram.WebApp.onEvent("mainButtonClicked", function (){
-    
+
     if(help === 0){
-        help = 1; 
+        help = 1;
+        window.Telegram.WebApp.BackButton.show();
         document.getElementById("inner").style.display = "none";
         document.getElementById("basket").style.display = "block";
-        
+
     }
     else {
         let v = "";
@@ -345,10 +346,8 @@ Telegram.WebApp.onEvent("mainButtonClicked", function (){
             v = v + "#" + key + ":" + value + ":" + prices[key];
         }
         tg.sendData(v);
-        
+
     }
-
-
 })
 
 let usercard = document.getElementById("usercard");
@@ -368,4 +367,14 @@ function click_edit(){
     help = 0;
     document.getElementById("inner").style.display = "grid";
     document.getElementById("basket").style.display = "none";
+    window.Telegram.WebApp.BackButton.hide();
 }
+
+Telegram.WebApp.onEvent("backButtonClicked", function (){
+
+    help = 0;
+    document.getElementById("inner").style.display = "grid";
+    document.getElementById("basket").style.display = "none";
+    window.Telegram.WebApp.BackButton.hide();
+    
+})
