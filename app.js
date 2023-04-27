@@ -66,7 +66,7 @@ btn1.addEventListener("click", function (){
     counter1.style.display = "flex";
     counter1.innerText = "1";
     order1.style.display = "block";
-    value1.innerText = prices['a-chip Premium'] + "UAH";
+    value1.innerText = prices['a-chip PREMIUM'] + "UAH";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
@@ -174,7 +174,7 @@ plus1.addEventListener("click", function () {
     counter1.innerText = Number(counter1.innerText) + 1;
     dict['a-chip PREMIUM'] = dict['a-chip PREMIUM'] +1 ;
     document.getElementById("order-count1").innerText = Number(counter1.innerText) + "x";
-    value1.innerText = (prices['a-chip Premium']*Number(counter1.innerText)) + "UAH";
+    value1.innerText = (prices['a-chip PREMIUM']*Number(counter1.innerText)) + "UAH";
 
 })
 
@@ -233,7 +233,7 @@ let minus6 = document.getElementById("minus6");
 minus1.addEventListener("click", function () {
 
     counter1.innerText = Number(counter1.innerText) - 1;
-    value1.innerText = (prices['a-chip Premium']*Number(counter1.innerText)) + "UAH";
+    value1.innerText = (prices['a-chip PREMIUM']*Number(counter1.innerText)) + "UAH";
 
     if (Number(counter1.innerText) === 0){
         btn1.style.display = "inline-block";
