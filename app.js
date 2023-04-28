@@ -385,7 +385,7 @@ Telegram.WebApp.onEvent("mainButtonClicked", function (){
         for (const [key, value] of Object.entries(dict)){
             v = v + "#" + key + ":" + value + ":" + prices[key];
         }
-        v = v + ' <' + 'comment' + '>' + document.getElementById("commentary").innerText + '<' + 'comment' + '>'
+        v = v + ' <' + 'comment1' + '>' + document.getElementById("commentary").innerText + '<' + 'comment' + '>'
         tg.sendData(v);
 
     }
