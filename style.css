@@ -22,11 +22,12 @@ body {
     grid-template-rows: auto;
 }
 .img {
-    width: 195px;
+    width: 185px;
 }
 .item {
     text-align: center;
     padding-bottom: 10px;
+    padding-right: 10px;
 }
 .counter {
     position: relative;
