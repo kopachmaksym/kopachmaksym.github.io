@@ -136,7 +136,7 @@ btn5.addEventListener("click", function (){
     counter5.style.display = "flex";
     counter5.innerText = "1";
     order5.style.display = "block";
-    value5.innerText = prices['a-chip PREMUIUM mini'] + "UAH";
+    value5.innerText = prices['a-chip PREMIUM mini'] + "UAH";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
