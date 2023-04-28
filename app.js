@@ -385,19 +385,11 @@ Telegram.WebApp.onEvent("mainButtonClicked", function (){
         for (const [key, value] of Object.entries(dict)){
             v = v + "#" + key + ":" + value + ":" + prices[key];
         }
-        v = v + ' <' + 'comment1' + '>' + document.getElementById("commentary").innerText + '<' + 'comment' + '>'
+        v = v + ' <' + 'comment' + '>' + document.getElementById("commentary").innerHTML + '<' + 'comment' + '>'
         tg.sendData(v);
 
     }
 })
-
-// let usercard = document.getElementById("usercard");
-
-// let p = document.createElement("p");
-
-// p.innerText = tg.initDataUnsafe.first_name + tg.DataUnsafe.last_name;
-
-// usercard.appendChild(p);
 
 function auto_grow(element) {
     element.style.height = "5px";
