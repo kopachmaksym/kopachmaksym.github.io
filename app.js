@@ -386,6 +386,7 @@ Telegram.WebApp.onEvent("mainButtonClicked", function (){
             v = v + "#" + key + ":" + value + ":" + prices[key];
         }
         let comm = document.getElementById("commentary").textContent;
+        tg.showAlert(comm);
         v = v + ' <' + 'comment' + '>' + comm + '<' + 'comment' + '>'
         tg.sendData(v);
 
