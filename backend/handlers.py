@@ -1,4 +1,4 @@
-from buy_process import dp, bot, admin_dp, admin_bot
+from buy_process import dp, bot
 from config import PAYMENT_TOKEN
 from aiogram.types import Message, LabeledPrice, PreCheckoutQuery, Invoice
 from aiogram.types.message import ContentType
@@ -17,7 +17,8 @@ async def buy_process(web_app_message):
     m = re.search(r' <comment>.*<comment>', web_app_message.web_app_data.data)
     comment = m.group(0).replace('<comment>', '').strip()
     PRICE = []
-    data = web_app_message.web_app_data.data.split('#')
+    data = web_app_message.web_app_data.data.replace(m.group(0), '')
+    data = data.split('#')
     data = [i.split(':') for i in data]
     data.pop(0)
     sum = 0
@@ -25,7 +26,7 @@ async def buy_process(web_app_message):
         if item[1] == '0':
             continue
         PRICE.append(LabeledPrice(label=f'{item[0]} x{item[1]}', amount=int(item[2])*int(item[1])*100))
-        sum += item[2]
+        sum += int(item[2])
 
     await bot.send_invoice(web_app_message.chat.id,
                            title='Покупка мікрочіпів',
@@ -45,7 +46,7 @@ async def buy_process(web_app_message):
     data_post['prices'] = PRICE
     data_post['full_sum'] = sum
     data_post['comment'] = comment
-    # data_post['contact'] = web_app_message.contact
+    data_post['contact'] = web_app_message.contact
 
 
 @dp.pre_checkout_query_handler(lambda q:True)
@@ -55,7 +56,7 @@ async def checkout_process(pre_checkout_query: PreCheckoutQuery):
     data_post['phone_number'] = pre_checkout_query.order_info.phone_number
     data_post['email'] = pre_checkout_query.order_info.email
     data_post['address'] = pre_checkout_query.order_info.shipping_address.to_python()
-    print(data_post)
+    await bot.send_message('-1001914657979', data_post)
     await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True)
 
 
