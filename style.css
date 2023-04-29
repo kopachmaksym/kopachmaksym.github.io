@@ -170,8 +170,9 @@ ul {
 .text-input {
     border-top: solid;
     border-bottom: solid;
-    /*color: var(--tg-theme-text-color);*/
+
 }
+
 .basket textarea{
     padding-top: 10px;
     position: relative;
@@ -184,4 +185,5 @@ ul {
     background-color: transparent;
     resize: none;
     outline: none;
+    color: var(--tg-theme-text-color);
 }
