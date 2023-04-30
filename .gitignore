@@ -1,3 +1,6 @@
 env
 .idea
 backend/config.py
+backend/test.py
+
+#git commit -m "Addet a way to save contacts to group channel (for admin)"
