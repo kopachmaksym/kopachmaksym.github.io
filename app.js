@@ -22,7 +22,7 @@ prices['Datamars'] = 182
 prices['animal-id min'] = 110
 prices['a-chip PREMIUM cannula'] = 134
 prices['a-chip PREMIUM mini'] = 182
-prices['animal-id pro 2,12x12mm'] = 0
+prices['animal-id pro 2,12x12mm'] = 1
 
 let btn1 = document.getElementById("btn1");
 let btn2 = document.getElementById("btn2");
