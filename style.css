@@ -23,6 +23,7 @@ body {
 }
 .img {
     width: 185px;
+    /*animation-play-state: paused;*/
 }
 .item {
     text-align: center;
@@ -186,4 +187,19 @@ ul {
     resize: none;
     outline: none;
     color: var(--tg-theme-text-color);
+}
+
+.description{
+    display: none;
+    /*display: grid;*/
+}
+
+.description .name{
+    font-size: 20px;
+    /*font-weight: bold;*/
+    padding: 10px;
+}
+
+.description .desc {
+    padding: 10px;
 }

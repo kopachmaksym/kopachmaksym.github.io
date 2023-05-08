@@ -59,6 +59,8 @@ let value4 = document.getElementById("value4");
 let value5 = document.getElementById("value5");
 let value6 = document.getElementById("value6");
 
+let video1 = document.getElementById('video1');
+
 btn1.addEventListener("click", function (){
 
     btn1.style.display = "none";
@@ -67,6 +69,7 @@ btn1.addEventListener("click", function (){
     counter1.innerText = "1";
     order1.style.display = "block";
     value1.innerText = prices['a-chip PREMIUM'] + "UAH";
+    video1.play();
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');

@@ -4,6 +4,8 @@ from aiogram.types import Message, LabeledPrice, PreCheckoutQuery
 from aiogram.types.message import ContentType
 import re
 from keyboads import keyboard
+data_post = {}
+msg = ''
 
 @dp.message_handler(commands=['start'])
 async def start(message: Message):
@@ -13,8 +15,6 @@ async def start(message: Message):
 async def buy_process(web_app_message):
     pr = {}
     PRICE = []
-    global data_post
-    data_post = {}
 
     m = re.search(r' <comment>.*<comment>', web_app_message.web_app_data.data)
     comment = m.group(0).replace('<comment>', '').strip()
@@ -33,6 +33,7 @@ async def buy_process(web_app_message):
 
     full_name, link = await get_name(web_app_message.from_user.id, web_app_message.chat.id)
 
+    data_post['Статус'] = 'Не оплачено'
     data_post['Повне імя'] = full_name
     data_post['Товар'] = pr
     data_post['Ціна'] = str(sum) + " UAH"
@@ -55,19 +56,22 @@ async def buy_process(web_app_message):
 
 @dp.pre_checkout_query_handler(lambda q:True)
 async def checkout_process(pre_checkout_query: PreCheckoutQuery):
+    await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True)
     data_post['User ID'] = pre_checkout_query.from_user.id
     data_post['Телефон'] = pre_checkout_query.order_info.phone_number
     data_post['Пошта'] = pre_checkout_query.order_info.email
     data_post['Адресс'] = pre_checkout_query.order_info.shipping_address.to_python()
-    await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True)
+    await message_print()
 
 @dp.message_handler(content_types=ContentType.SUCCESSFUL_PAYMENT)
 async def successful_payment(message: Message):
     await bot.send_message(message.chat.id, "Платіж успішний!")
+    data_post['Статус'] = 'Оплачено'
     await message_print()
 
 async def message_print():
     ptext = ''
+    global msg
 
     for key, value in data_post.items():
         if type(value) == dict:
@@ -76,8 +80,16 @@ async def message_print():
                 ptext += f'\t\t\t-{key2.replace("_", " ").capitalize()}: {value2}\n'
         else:
             ptext += f'{key}: {value}\n'
+    if data_post['Статус'] == 'Не оплачено' or data_post['Статус'] == 'Не оплачено. Помилка транзакції':
+        if msg == '':
+            msg = await bot.send_message(CHAT_GROUP, ptext, disable_notification=True)
+        elif data_post['Статус'] != 'Не оплачено. Помилка транзакції':
+                data_post['Статус'] = 'Не оплачено. Помилка транзакції'
+                ptext = ptext.replace('Статус: Не оплачено', 'Статус: Не оплачено. Помилка транзакції')
+                await bot.edit_message_text(chat_id= CHAT_GROUP, message_id= msg.message_id , text = ptext)
+    else:
+        await bot.edit_message_text(chat_id= CHAT_GROUP, message_id= msg.message_id , text = ptext)
 
-    await bot.send_message(CHAT_GROUP, ptext)
 
 async def get_name(user_id: int, chat_id: int):
     link = None
@@ -86,5 +98,5 @@ async def get_name(user_id: int, chat_id: int):
     full_name =chat_member.user.full_name
     if user.username:
         link = f'https://t.me/{user.username}'
-
     return full_name, link
+
