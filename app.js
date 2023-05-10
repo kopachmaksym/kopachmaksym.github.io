@@ -60,10 +60,10 @@ let value5 = document.getElementById("value5");
 let value6 = document.getElementById("value6");
 
 let video1 = document.getElementById('video1');
-video1.src = "anim/static-2.png";
+video1.src = "anim/static-2.PNG";
 
 function change1(){
-    video1.src = "anim/static-2.png";
+    video1.src = "anim/static-2.PNG";
 }
 
 btn1.addEventListener("click", function (){
@@ -74,7 +74,6 @@ btn1.addEventListener("click", function (){
     counter1.innerText = "1";
     order1.style.display = "block";
     value1.innerText = prices['a-chip PREMIUM'] + "UAH";
-//hi!
     let src = video1.src;
     video1.src = "anim/mini-gif-2.gif";
 
