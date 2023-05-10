@@ -74,7 +74,7 @@ btn1.addEventListener("click", function (){
     counter1.innerText = "1";
     order1.style.display = "block";
     value1.innerText = prices['a-chip PREMIUM'] + "UAH";
-//hi
+//hi!
     let src = video1.src;
     video1.src = "anim/mini-gif-2.gif";
 
