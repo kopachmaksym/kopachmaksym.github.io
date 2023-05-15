@@ -1,9 +1,11 @@
 from buy_process import dp, bot
 from config import PAYMENT_TOKEN, CHAT_GROUP
-from aiogram.types import Message, LabeledPrice, PreCheckoutQuery
+from aiogram.types import Message, LabeledPrice, PreCheckoutQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.types.message import ContentType
-import re
 from keyboads import keyboard
+from aiogram.dispatcher.filters import Text, Regexp
+import re
+from micro_number import find_path
 data_post = {}
 msg = ''
 
@@ -99,4 +101,21 @@ async def get_name(user_id: int, chat_id: int):
     if user.username:
         link = f'https://t.me/{user.username}'
     return full_name, link
+
+@dp.message_handler(Text('Знайти за чіпом'))
+async def get_animal_info(message):
+    await bot.send_message(chat_id=message.chat.id , text = 'Введіть номер чіпа')
+
+
+@dp.message_handler()
+async def get_animal(message):
+    if re.search('[0-9]{15}', message.text):
+        res = find_path(message.text)
+        if res == None:
+            await bot.send_message(chat_id=message.chat.id, text= 'Некоректно введений номер чіпа')
+        else:
+            ikm = InlineKeyboardMarkup(row_width=1)
+            ib = InlineKeyboardButton(text='Результат', web_app={'url': res})
+            ikm.add(ib)
+            await bot.send_message(chat_id=message.chat.id, text='Тварину знайдено', reply_markup=ikm)
 

@@ -6,7 +6,8 @@ web_app = WebAppInfo(url='https://kopachmaksym.github.io/')
 
 keyboard = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text='Купити', web_app=web_app)]
+        [KeyboardButton(text='Купити', web_app=web_app)],
+        [KeyboardButton(text='Знайти за чіпом')]
     ],
     resize_keyboard=True
 )
