@@ -60,7 +60,7 @@ let value5 = document.getElementById("value5");
 let value6 = document.getElementById("value6");
 
 let video1 = document.getElementById('video1');
-// video1.src = "anim/static-2.PNG";
+video1.src = "anim/static";
 
 function change1(){
     video1.src = "anim/static";
