@@ -63,7 +63,7 @@ let video1 = document.getElementById('video1');
 // video1.src = "anim/static-2.PNG";
 
 function change1(){
-    video1.src = "anim/static-2.PNG";
+    video1.src = "anim/static";
 }
 
 btn1.addEventListener("click", function (){
@@ -75,7 +75,7 @@ btn1.addEventListener("click", function (){
     order1.style.display = "block";
     value1.innerText = prices['a-chip PREMIUM'] + "UAH";
     // let src = video1.src;
-    video1.src = "anim/mini-gif-2.gif";
+    video1.src = "anim/animate.gif";
 
     if (!tg.MainButton.isVisible){
         tg.MainButton.setText('Купити');
