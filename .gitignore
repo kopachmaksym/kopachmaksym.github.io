@@ -1,5 +1,7 @@
 env
 .idea
+python
+trash
 backend/config.py
 trash/order-test.png
 trash/Datamars2.jpg
@@ -7,6 +9,5 @@ trash/achip_premium2.jpg
 trash/chip_premium.jpg
 trash/id-pro.jpg
 trash/premium_mini.jpg
-python
-trash
+
 
