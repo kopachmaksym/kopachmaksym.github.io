@@ -104,7 +104,7 @@ async def get_name(user_id: int, chat_id: int):
 
 @dp.message_handler(Text('Знайти за чіпом'))
 async def get_animal_info(message):
-    await bot.send_message(chat_id=message.chat.id , text = 'Введіть номер чіпа')
+    await bot.send_message(chat_id=message.chat.id , text = 'Введіть номер чіпа. Тільки 15 цифр без пробілів')
 
 
 @dp.message_handler()
@@ -112,10 +112,13 @@ async def get_animal(message):
     if re.search('[0-9]{15}', message.text):
         res = find_path(message.text)
         if res == None:
-            await bot.send_message(chat_id=message.chat.id, text= 'Некоректно введений номер чіпа')
+            await bot.send_message(chat_id=message.chat.id, text= f'Некоректно введений номер" на " за номером {message.text}'
+                                                                  f' тварину не знайдено')
         else:
             ikm = InlineKeyboardMarkup(row_width=1)
             ib = InlineKeyboardButton(text='Результат', web_app={'url': res})
             ikm.add(ib)
             await bot.send_message(chat_id=message.chat.id, text='Тварину знайдено', reply_markup=ikm)
-
+    else:
+        await bot.send_message(chat_id=message.chat.id,
+                               text=f'Номер введено некоректно. Переконайтесь, що ви ввели 15 цифр без пробілів')
