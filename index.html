@@ -135,7 +135,7 @@
                     <div class="counter" id="counter1">0</div>
                 </div>
 <!--                <img src="anim/animate.gif" alt="achip_premium" class="img" id="video1" loading="lazy">-->
-                <img src="img/achip_premium2.png" alt="achip_premium2" class="img">
+                <img src="img/achip_premium2.png" alt="achip_premium2" class="img" onclick="open_descr('img-descr1','prod_descr1')">
                 <label>a-chip premium 2 * 165UAH</label>
                 <button class="btn" id="btn1" onclick="change(this, 'anim/static', 6000)">Add</button>
                 <div class="count" id="count1">
@@ -147,7 +147,7 @@
                 <div class="absolute">
                     <div class="counter" id="counter2">0</div>
                 </div>
-                <img src="img/Datamars2.png" alt="datamars" class="img">
+                <img src="img/Datamars2.png" alt="datamars" class="img" onclick="open_descr('img-descr2','prod_descr2')">
                 <label>Datamars 2 * 182UAH</label>
                 <button class="btn" id="btn2">Add</button>
                 <div class="count" id="count2">
@@ -159,7 +159,7 @@
                 <div class="absolute">
                     <div class="counter" id="counter3">0</div>
                 </div>
-                <img src="img/id-mini.png" alt="animal-id_min" class="img">
+                <img src="img/id-mini.png" alt="animal-id_min" class="img" onclick="open_descr('img-descr3','prod_descr3')">
                 <label>animal-id mini * 110UAH</label>
                 <button class="btn" id="btn3">Add</button>
                 <div class="count" id="count3">
@@ -171,7 +171,7 @@
                 <div class="absolute">
                     <div class="counter" id="counter4">0</div>
                 </div>
-                <img src="img/chip_premium.png" alt="premium_cannula" class="img">
+                <img src="img/chip_premium.png" alt="premium_cannula" class="img" onclick="open_descr('img-descr4','prod_descr4')">
                 <label>a-chip premium * 134UAH</label>
                 <button class="btn" id="btn4">Add</button>
                 <div class="count" id="count4">
@@ -183,7 +183,7 @@
                 <div class="absolute">
                     <div class="counter" id="counter5">0</div>
                 </div>
-                <img src="img/premium_mini.png" alt="achip_premium_mini" class="img">
+                <img src="img/premium_mini.png" alt="achip_premium_mini" class="img" onclick="open_descr('img-descr5','prod_descr5')">
                 <label>a-chip premium mini * 182UAH</label>
                 <button class="btn" id="btn5">Add</button>
                 <div class="count" id="count5">
@@ -195,7 +195,7 @@
                 <div class="absolute">
                     <div class="counter" id="counter6">0</div>
                 </div>
-                <img src="img/id-pro.png" alt="achip_pro_one" class="img">
+                <img src="img/id-pro.png" alt="achip_pro_one" class="img" onclick="open_descr('img-descr6','prod_descr6')">
                 <label>animal-id pro * 3UAH</label>
                 <button class="btn" id="btn6">Add</button>
                 <div class="count" id="count6">
@@ -205,14 +205,83 @@
             </div>
         </div>
 
-
-        <div class="description">
-            <label class="name"><strong>Продукт:</strong> Транспондер (мікрочіп) для тварин animal-id mini з ін'єктором 1,4 * 8 мм</label>
-            <label class="desc">Мікрочіп animal-id mini (1,4 х 8мм) на даний момент є одним з найпопулярніших продуктів на ринку України у сфері ідентифікації тварин. Чудово підходить для чіпування всіх видів тварин.Розроблений у відповідності з міжнародними стандартами ISO 11784/85. Унікальний 15-значний код, який неможливо переписати, підробити або перепрограмувати. Легко зчитується сканерамистандарту ISO 11784/85 FDX-B всіх виробників. Транспондер складається з канули та ін’єктора. Завдяки системі LuerLock, канула чітко фіксується з ін’єктором, що робить процедуру імплантації максимально зручною. Ін’єктор, вироблений з харчового екопластика, розроблений у співпраці з німецькими ветлікарями, дуже зручний в роботі як жінкам так і чоловікам.</label>
-        </div>
+            <div class="description" id="description">
+                <div class="image-changing">
+                    <img class="img-descr" id="img-descr1" src="img/descr_img/achip_premium/1.png" alt="image_descr">
+                    <img class="img-descr" id="img-descr2" src="img/descr_img/datamars/1.png" alt="image_descr">
+                    <img class="img-descr" id="img-descr3" src="img/descr_img/animal-id_mini/1.png" alt="image_descr">
+                    <img class="img-descr" id="img-descr4" src="img/descr_img/achip_premium_cannula/1.png" alt="image_descr">
+                    <img class="img-descr" id="img-descr5" src="img/descr_img/animal-id_mini/1.png" alt="image_descr">
+                    <img class="img-descr" id="img-descr6" src="img/descr_img/animal-id_pro/1.png" alt="image_descr">
+                    <a class="left" id="previous"><img src="img/flaticon/previous_1.png" alt="previous"></a>
+                    <a class="right" id="next"><img src="img/flaticon/next_1.png" alt="next"></a>
+                </div>
+                <div class="prod_descr" id="prod_descr1">
+                    <p><strong>Виробник:</strong> a-chip</p>
+                    <p><strong>Модель:</strong> a-chip PREMIUM</p>
+                    <p><strong>В упаковці:</strong> 10 шт.</p>
+                    <p>Мікрочіпи a-chip PREMIUM (точний розмір 2,12 х 12 мм) мають
+                        найкраще співвідношення ціна / якість в своїй ніші на ринку України.
+                        У даній продуктовій лінійці використовується дуже якісна голка, і транспондер
+                        (чіп) німецького виробництва провідної світової компанії "AEG GmbH".</p>
+                </div>
+                <div class="prod_descr" id="prod_descr2">
+                    <p><strong>Виробник:</strong> Datamars</p>
+                    <p><strong>Модель:</strong> Мікрочіп Datamars</p>
+                    <p><strong>В упаковці:</strong> 10 шт.</p>
+                    <p>Мікрочіпи Datamars давно представлені на ринках Європи,
+                        Америки, Азії. Ідеально підходять для ідентифікації всіх видів тварин.
+                        Транспондер випускається з кодом (981) швейцарського виробника Datamars SA,
+                        який повністю відповідає міжнародному стандарту ISO 11784 і сертифікований
+                        міжнародною організацією ICAR з 01.11.1995 року (icar.org). Виробник гарантує
+                        правильність і неповторність коду. Зчитується сканером стандарту ISO 11785 FDX-B
+                        всіх виробників. </p>
+                </div>
+                <div class="prod_descr" id="prod_descr3">
+                    <p><strong>Виробник:</strong> a-chip</p>
+                    <p><strong>Модель:</strong> animal-id mini</p>
+                    <p><strong>В упаковці:</strong> 10 шт.</p>
+                    <p>Мікрочіп animal-id mini (1,4 х 8мм) на даний момент є одним з найпопулярніших продуктів на
+                        ринку України у сфері ідентифікації тварин. Чудово підходить для чіпування всіх видів тварин.
+                        Розроблений у відповідності з міжнародними стандартами ISO 11784/85. Унікальний 15-значний код,
+                        який неможливо переписати, підробити або перепрограмувати. Легко зчитується сканерамистандарту
+                        ISO 11784/85 FDX-B всіх виробників..</p>
+                </div>
+                <div class="prod_descr" id="prod_descr4">
+                    <p><strong>Виробник:</strong> a-chip</p>
+                    <p><strong>Модель:</strong> a-chip PREMIUM cannula</p>
+                    <p><strong>В упаковці:</strong> 10 шт.</p>
+                    <p>a-chip PREMIUM cannula відрізняється від a-chip PREMIUM нижчою ціною за рахунок використання
+                        в даній продукції багаторазового ін'єктора, замість одноразових (індивідуальних).
+                        Також кожна голка закрита маленьким пластиковим штовхачем (див. На фото 1),
+                        завдяки чому ін'єктор не торкається самого чіпа і тому його не потрібно стерилізувати.
+                        Враховуючи наявність додаткового штовхача в голці, важливою відмінністю даного продукту
+                        є відповідно довжина самого поршня (ніжки) ін'єктора, яка тут коротше приблизно на 20 мм.
+                        Тому використання даних чіпів дозволено виключно ін'єктором (шприцом), який йде разом з чіпами
+                        в упаковці!</p>
+                </div>
+                <div class="prod_descr" id="prod_descr5">
+                    <p><strong>Виробник:</strong> a-chip</p>
+                    <p><strong>Модель:</strong> a-chip PREMIUM mini</p>
+                    <p><strong>В упаковці:</strong> 10 шт.</p>
+                    <p>Мікрочіпи a-chip PREMIUM mini передбачені для ідентифікації тварин дрібних порід.
+                        У лінійці PREMIUM використовується дуже якісна голка, і транспондер (чіп) німецького
+                        виробництва провідної світової компанії "AEG GmbH". Завдяки цьому: процедура чіпування цими
+                        мікрочіпами буде зручною для ветеринара і менш болючою для тварин
+                        ми даємо довічну гарантію на чіпи</p>
+                </div>
+                <div class="prod_descr" id="prod_descr6">
+                    <p><strong>Виробник:</strong> a-chip</p>
+                    <p><strong>Модель:</strong> animal-id pro з ін'єктором</p>
+                    <p><strong>В упаковці:</strong> 10 шт.</p>
+                    <p>Мікрочіп animal-id pro (2,12 х 12мм) на даний момент є одним з найпопулярніших продуктів на
+                        ринку України у сфері ідентифікації тварин. Чудово підходить для чіпування всіх видів тварин.
+                        Розроблений у відповідності з міжнародними стандартами ISO 11784/85. Унікальний 15-значний код,
+                        який неможливо переписати, підробити або перепрограмувати. Легко зчитується сканерамистандарту
+                        ISO 11784/85 FDX-B всіх виробників.</p>
+                </div>
+            </div>
     </div>
-
-<!--    <div class="usercard" id="usercard"></div>-->
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="app.js"></script>

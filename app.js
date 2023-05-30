@@ -17,6 +17,12 @@ dict['a-chip PREMIUM cannula'] = 0
 dict['a-chip PREMIUM mini'] = 0
 dict['animal-id pro 2,12x12mm'] = 0
 
+// element = element.parentNode.querySelector("[id*=video]");
+// setTimeout(function () {element.src=path;}, time);
+item = document.querySelectorAll('.item');
+//item.forEach();
+
+
 prices['a-chip PREMIUM'] = 165
 prices['Datamars'] = 182
 prices['animal-id min'] = 110
@@ -407,11 +413,61 @@ function click_edit(){
     window.Telegram.WebApp.BackButton.hide();
 }
 
+let image;
+let descr;
 Telegram.WebApp.onEvent("backButtonClicked", function (){
 
     help = 0;
+    if (image!==undefined){
+        image.style.display = 'none';
+        descr.style.display = 'none';
+    }
     document.getElementById("inner").style.display = "grid";
+    document.getElementsByClassName('description').style.display = "none";
     document.getElementById("basket").style.display = "none";
     window.Telegram.WebApp.BackButton.hide();
     
+})
+
+
+// alert(image === undefined);
+function open_descr(id, prod){
+    document.getElementById('description').style.display = "grid";
+    document.getElementById('inner').style.display = 'none';
+    image = document.getElementById(id);
+    descr = document.getElementById(prod);
+    image.style.display = 'block';
+    descr.style.display = 'block';
+
+    window.Telegram.WebApp.BackButton.show();
+}
+
+
+
+
+let i = 0;
+// image = document.getElementById("img-descr1");
+previous = document.getElementById("previous");
+next = document.getElementById("next");
+
+previous.addEventListener("click", function (){
+    if (i===0){
+        i = 2;
+    }
+    else {
+        i = i - 1;
+    }
+    image.src = image.src.slice(0, (image.src.length -5)) + (i+1) + '.png';
+
+})
+
+next.addEventListener("click", function (){
+    if (i===2){
+        i = 0;
+    }
+    else {
+        i = i + 1;
+    }
+    image.src = image.src.slice(0, (image.src.length -5)) + (i+1) + '.png';
+
 })
