@@ -424,6 +424,7 @@ Telegram.WebApp.onEvent("backButtonClicked", function (){
     }
     document.getElementById("inner").style.display = "grid";
     document.getElementById('description').style.display = "none";
+
     document.getElementById("basket").style.display = "none";
     window.Telegram.WebApp.BackButton.hide();
     
