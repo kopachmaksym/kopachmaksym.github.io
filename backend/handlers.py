@@ -5,12 +5,30 @@ from aiogram.types.message import ContentType
 from keyboads import keyboard
 from aiogram.dispatcher.filters import Text, Regexp
 import re
+from buy_process import cursor, conn
 from micro_number import find_path
 data_post = {}
 msg = ''
 
+@dp.message_handler(commands=['total_users'])
+async def show_total_users_count(message: Message):
+    cursor.execute('SELECT COUNT(*) FROM users')
+    total_users = cursor.fetchone()[0]
+    await message.reply(f"The total number of users: {total_users}")
+
 @dp.message_handler(commands=['start'])
 async def start(message: Message):
+    user = message.from_user
+    cursor.execute('SELECT * FROM users WHERE user_id = ?', (user.id,))
+    existing_user = cursor.fetchone()
+
+    if not existing_user:
+        cursor.execute('''
+                INSERT INTO users (user_id, is_bot, first_name, last_name, username)
+                VALUES (?, ?, ?, ?, ?)
+            ''', (user.id, user.is_bot, user.first_name, user.last_name, user.username))
+        conn.commit()
+
     await bot.send_message(message.chat.id, 'Будь ласка, виберіть опцію:', reply_markup=keyboard)
 
 @dp.message_handler(content_types='web_app_data')
