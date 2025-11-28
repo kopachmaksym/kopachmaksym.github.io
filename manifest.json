@@ -1,12 +1,16 @@
 {
     "name": "Simple PWA",
     "short_name": "PWA",
+    "description": "A minimal Progressive Web App",
     "start_url": "/",
+    "scope": "/",
     "display": "standalone",
+    "orientation": "portrait-primary",
     "background_color": "#ffffff",
     "theme_color": "#2b2bff",
     "icons": [
-        { "src": "/icons/icon-128.png", "sizes": "128x128", "type": "image/png" },
-        { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
-    ]
+        { "src": "/icons/icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+        { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    ],
+    "categories": ["productivity"]
 }
