@@ -1,0 +1,70 @@
+<!-- File: index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simple PWA</title>
+    <meta name="theme-color" content="#2b2bff" />
+    <link rel="manifest" href="/manifest.json" />
+    <style>
+        :root { --accent:#2b2bff; font-family: system-ui,Segoe UI,Roboto,Helvetica,Arial; }
+        body{ margin:0; padding:1rem; color:#222; }
+        header{ display:flex; align-items:center; gap:.75rem; }
+        .badge{ background:var(--accent); color:#fff; padding:.25rem .5rem; border-radius:.375rem; }
+        #offline { display:none; background:#ffdede; padding:.5rem; margin-top:1rem; border-radius:.375rem; }
+        button{ padding:.5rem .75rem; border:1px solid #ccc; border-radius:.375rem; background:#fff; cursor:pointer; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="badge">PWA</div>
+        <h1 style="margin:0;font-size:1.25rem;">Simple Progressive Web App</h1>
+    </header>
+
+    <p>This app demonstrates a minimal PWA: manifest, service worker, offline fallback and install prompt.</p>
+
+    <div>
+        <button id="installBtn" style="display:none">Install App</button>
+        <button id="checkOffline">Check Offline</button>
+    </div>
+
+    <div id="offline">You are offline — showing cached content.</div>
+
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(reg=>{
+                console.log('SW registered:', reg.scope);
+            }).catch(err=>{
+                console.warn('SW registration failed:', err);
+            });
+        }
+
+        // Offline indicator
+        const offlineEl = document.getElementById('offline');
+        function updateOnlineStatus(){ offlineEl.style.display = navigator.onLine ? 'none' : 'block'; }
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        document.getElementById('checkOffline').addEventListener('click', updateOnlineStatus);
+        updateOnlineStatus();
+
+        // Install prompt
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'inline-block';
+        });
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const choice = await deferredPrompt.userChoice;
+            console.log('Install choice:', choice.outcome);
+            deferredPrompt = null;
+            installBtn.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
