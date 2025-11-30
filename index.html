@@ -1,4 +1,3 @@
-<!-- File: index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,15 +19,23 @@
         .badge{ background:var(--accent); color:#fff; padding:.25rem .5rem; border-radius:.375rem; }
         #offline { display:none; background:#ffdede; padding:.5rem; margin-top:1rem; border-radius:.375rem; }
         button{ padding:.5rem .75rem; border:1px solid #ccc; border-radius:.375rem; background:#fff; cursor:pointer; }
+        input, select, textarea { padding:.5rem; margin:.5rem 0; width:100%; box-sizing:border-box; border:1px solid #ccc; border-radius:.375rem; }
+        .form-group { margin:1rem 0; }
+        label { display:block; font-weight:bold; margin-bottom:.25rem; }
+        .animal-item { background:#f5f5f5; padding:1rem; margin:1rem 0; border-radius:.375rem; border-left:4px solid var(--accent); }
+        .animal-item h3 { margin:.5rem 0; color:var(--accent); }
+        .animal-item p { margin:.25rem 0; font-size:.9rem; }
+        .success { background:#d4edda; color:#155724; padding:.75rem; margin:1rem 0; border-radius:.375rem; }
+        .error { background:#f8d7da; color:#721c24; padding:.75rem; margin:1rem 0; border-radius:.375rem; }
     </style>
 </head>
 <body>
     <header>
-        <div class="badge">PWA</div>
-        <h1 style="margin:0;font-size:1.25rem;">Simple Progressive Web App</h1>
+        <div class="badge">🐾 PWA</div>
+        <h1 style="margin:0;font-size:1.25rem;">Animal Shelter</h1>
     </header>
 
-    <p>This app demonstrates a minimal PWA: manifest, service worker, offline fallback and install prompt.</p>
+    <p>Додайте тварину до притулку та переглядайте список.</p>
 
     <div>
         <button id="installBtn" style="display:none">Install App</button>
@@ -37,7 +44,82 @@
 
     <div id="offline">You are offline — showing cached content.</div>
 
+    <!-- Add Animal Form -->
+    <div style="background:#fff; padding:1rem; border:1px solid #ddd; border-radius:.375rem; margin:1rem 0;">
+        <h2>Додати тварину</h2>
+        <form id="animalForm">
+            <div class="form-group">
+                <label>Кличка:</label>
+                <input type="text" id="nickname" required />
+            </div>
+
+            <div class="form-group">
+                <label>Стать:</label>
+                <select id="sex" required>
+                    <option value="">Виберіть</option>
+                    <option value="0">Самка</option>
+                    <option value="1">Самець</option>
+                    <option value="2">Невідомо</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Вид:</label>
+                <select id="species" required>
+                    <option value="">Виберіть</option>
+                    <option value="1">Кіт</option>
+                    <option value="3">Собака</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Колір:</label>
+                <input type="text" id="color" />
+            </div>
+
+            <div class="form-group">
+                <label>Розмір:</label>
+                <select id="animal_size">
+                    <option value="">Виберіть</option>
+                    <option value="1">Маленька</option>
+                    <option value="2">Середня</option>
+                    <option value="3">Велика</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Вага (кг):</label>
+                <input type="number" id="_weight" />
+            </div>
+
+            <div class="form-group">
+                <label>Опис:</label>
+                <textarea id="_short_description" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Стерилізована:</label>
+                <select id="sterilization">
+                    <option value="false">Ні</option>
+                    <option value="true">Так</option>
+                </select>
+            </div>
+
+            <button type="submit" style="background:var(--accent); color:#fff; border:none; cursor:pointer;">Додати тварину</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <!-- Animals List -->
+    <div>
+        <h2>Список тварин</h2>
+        <div id="animalsList"></div>
+    </div>
+
     <script>
+        const API_URL = 'http://api.animal-id.info/homeless_v1/animal';
+        const TOKEN = 'Bearer okRpmDg2wJeyLPbD14tDcbrgeYOX8ltv';
+
         // Register service worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').then(reg=>{
@@ -56,21 +138,116 @@
         updateOnlineStatus();
 
         // Install prompt
+        const isIphone = /iPhone|iPad|iPod/.test(navigator.userAgent);
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
+        
+        if (isIphone) {
+            installBtn.textContent = '📱 Add to Home Screen';
             installBtn.style.display = 'inline-block';
+            installBtn.addEventListener('click', () => {
+                alert('Натисніть Share (внизу) → Add to Home Screen');
+            });
+        } else {
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                installBtn.style.display = 'inline-block';
+            });
+            installBtn.addEventListener('click', async () => {
+                if (!deferredPrompt) return;
+                deferredPrompt.prompt();
+                const choice = await deferredPrompt.userChoice;
+                console.log('Install choice:', choice.outcome);
+                deferredPrompt = null;
+                installBtn.style.display = 'none';
+            });
+        }
+
+        // Add Animal Form Handler
+        const form = document.getElementById('animalForm');
+        const messageDiv = document.getElementById('message');
+        const animalsList = document.getElementById('animalsList');
+        let animals = JSON.parse(localStorage.getItem('animals')) || [];
+
+        // Display animals from localStorage
+        function displayAnimals() {
+            animalsList.innerHTML = animals.map((animal, idx) => `
+                <div class="animal-item">
+                    <h3>${animal.nickname} ${animal.species === 1 ? '🐱' : '🐶'}</h3>
+                    <p><strong>Вид:</strong> ${animal.species === 1 ? 'Кіт' : 'Собака'}</p>
+                    <p><strong>Колір:</strong> ${animal.color || '-'}</p>
+                    <p><strong>Вага:</strong> ${animal._weight || '-'} кг</p>
+                    <p><strong>Стерилізована:</strong> ${animal.sterilization ? 'Так' : 'Ні'}</p>
+                    <p><strong>Опис:</strong> ${animal._short_description || '-'}</p>
+                    <button onclick="deleteAnimal(${idx})" style="background:#dc3545; color:#fff; border:none; margin-top:.5rem;">Видалити</button>
+                </div>
+            `).join('');
+        }
+
+        function deleteAnimal(idx) {
+            animals.splice(idx, 1);
+            localStorage.setItem('animals', JSON.stringify(animals));
+            displayAnimals();
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            messageDiv.innerHTML = '';
+
+            const animalData = {
+                breed: '',
+                sex: parseInt(document.getElementById('sex').value),
+                nickname: document.getElementById('nickname').value,
+                species: parseInt(document.getElementById('species').value),
+                sterilization: document.getElementById('sterilization').value === 'true',
+                color: document.getElementById('color').value,
+                animal_size: parseInt(document.getElementById('animal_size').value) || 1,
+                birth_date: Math.floor(Date.now() / 1000),
+                _long: 0,
+                _lat: 0,
+                _weight: parseInt(document.getElementById('_weight').value) || 0,
+                _lame: false,
+                _skin_problem: false,
+                _baby: false,
+                _preg_lact: false,
+                _owner: 1,
+                _short_description: document.getElementById('_short_description').value,
+                created_at: Math.floor(Date.now() / 1000),
+                photo: null
+            };
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': TOKEN
+                    },
+                    body: JSON.stringify(animalData)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    messageDiv.innerHTML = '<div class="success">✅ Тварину успішно додано!</div>';
+                    animals.push(animalData);
+                    localStorage.setItem('animals', JSON.stringify(animals));
+                    form.reset();
+                    displayAnimals();
+                    setTimeout(() => messageDiv.innerHTML = '', 3000);
+                } else {
+                    messageDiv.innerHTML = '<div class="error">❌ Помилка при додаванні тварини</div>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                messageDiv.innerHTML = '<div class="error">❌ Помилка мережі. Збережено локально.</div>';
+                animals.push(animalData);
+                localStorage.setItem('animals', JSON.stringify(animals));
+                displayAnimals();
+            }
         });
-        installBtn.addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            const choice = await deferredPrompt.userChoice;
-            console.log('Install choice:', choice.outcome);
-            deferredPrompt = null;
-            installBtn.style.display = 'none';
-        });
+
+        displayAnimals();
     </script>
 </body>
 </html>
