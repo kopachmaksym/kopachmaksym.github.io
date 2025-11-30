@@ -88,8 +88,15 @@
             </div>
 
             <div class="form-group">
-                <label>Вага (кг):</label>
-                <input type="number" id="_weight" />
+                <label>Вага (статус):</label>
+                <select id="_weight" required>
+                    <option value="">Виберіть</option>
+                    <option value="1">Виснажена</option>
+                    <option value="2">Худа</option>
+                    <option value="3">Нормальна</option>
+                    <option value="4">Товста</option>
+                    <option value="5">Ожиріння</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -102,6 +109,51 @@
                 <select id="sterilization">
                     <option value="false">Ні</option>
                     <option value="true">Так</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Фото:</label>
+                <input type="file" id="photo" accept="image/*" />
+            </div>
+
+            <div class="form-group">
+                <label>Кульгавість:</label>
+                <select id="_lame">
+                    <option value="0">Ні</option>
+                    <option value="1">Так</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Проблеми з шкірою:</label>
+                <select id="_skin_problem">
+                    <option value="0">Ні</option>
+                    <option value="1">Так</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Дитинча:</label>
+                <select id="_baby">
+                    <option value="0">Ні</option>
+                    <option value="1">Так</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Вагітна/Лактуюча:</label>
+                <select id="_preg_lact">
+                    <option value="0">Ні</option>
+                    <option value="1">Так</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Власник:</label>
+                <select id="_owner">
+                    <option value="1">Притулок</option>
+                    <option value="">Без власника</option>
                 </select>
             </div>
 
@@ -175,12 +227,15 @@
             animalsList.innerHTML = animals.map((animal, idx) => `
                 <div class="animal-item">
                     <h3>${animal.nickname} ${animal.species === 1 ? '🐱' : '🐶'}</h3>
+                    <p><strong>Порода:</strong> ${animal.breed || '-'}</p>
                     <p><strong>Вид:</strong> ${animal.species === 1 ? 'Кіт' : 'Собака'}</p>
+                    <p><strong>Стать:</strong> ${['Самка', 'Самець', 'Невідомо'][animal.sex] || '-'}</p>
                     <p><strong>Колір:</strong> ${animal.color || '-'}</p>
-                    <p><strong>Вага:</strong> ${animal._weight || '-'} кг</p>
+                    <p><strong>Статус ваги:</strong> ${['', 'Виснажена', 'Худа', 'Нормальна', 'Товста', 'Ожиріння'][animal._weight] || '-'}</p>
                     <p><strong>Стерилізована:</strong> ${animal.sterilization ? 'Так' : 'Ні'}</p>
                     <p><strong>Опис:</strong> ${animal._short_description || '-'}</p>
-                    <button onclick="deleteAnimal(${idx})" style="background:#dc3545; color:#fff; border:none; margin-top:.5rem;">Видалити</button>
+                    ${animal.photoUrl ? `<img src="${animal.photoUrl}" style="max-width:100%; border-radius:.375rem; margin-top:.5rem;" />` : ''}
+                    <button onclick="deleteAnimal(${idx})" style="background:#dc3545; color:#fff; border:none; margin-top:.5rem; padding:.5rem .75rem; border-radius:.375rem; cursor:pointer;">Видалити</button>
                 </div>
             `).join('');
         }
@@ -193,55 +248,78 @@
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            messageDiv.innerHTML = '';
+            messageDiv.innerHTML = '<div class="success">⏳ Завантажується...</div>';
 
-            const animalData = {
-                breed: '',
-                sex: parseInt(document.getElementById('sex').value),
-                nickname: document.getElementById('nickname').value,
-                species: parseInt(document.getElementById('species').value),
-                sterilization: document.getElementById('sterilization').value === 'true',
-                color: document.getElementById('color').value,
-                animal_size: parseInt(document.getElementById('animal_size').value) || 1,
-                birth_date: Math.floor(Date.now() / 1000),
-                _long: 0,
-                _lat: 0,
-                _weight: parseInt(document.getElementById('_weight').value) || 0,
-                _lame: false,
-                _skin_problem: false,
-                _baby: false,
-                _preg_lact: false,
-                _owner: 1,
-                _short_description: document.getElementById('_short_description').value,
-                created_at: Math.floor(Date.now() / 1000),
-                photo: null
-            };
+            const formData = new FormData();
+            
+            // Додайте всі поля як form-data
+            formData.append('breed', document.getElementById('nickname').value + ' порода');
+            formData.append('sex', document.getElementById('sex').value);
+            formData.append('nickname', document.getElementById('nickname').value);
+            formData.append('species', document.getElementById('species').value);
+            formData.append('sterilization', document.getElementById('sterilization').value === 'true' ? 1 : 0);
+            formData.append('color', document.getElementById('color').value);
+            formData.append('animal_size', document.getElementById('animal_size').value || 2);
+            formData.append('birth_date', Math.floor(Date.now() / 1000));
+            formData.append('_long', -1.0);
+            formData.append('_lat', -1.0);
+            formData.append('_weight', document.getElementById('_weight').value || 3);
+            formData.append('_lame', document.getElementById('_lame').value);
+            formData.append('_skin_problem', document.getElementById('_skin_problem').value);
+            formData.append('_baby', document.getElementById('_baby').value);
+            formData.append('_preg_lact', document.getElementById('_preg_lact').value);
+            formData.append('_owner', document.getElementById('_owner').value || null);
+            formData.append('_short_description', document.getElementById('_short_description').value);
+            formData.append('created_at', Math.floor(Date.now() / 1000));
+
+            // Фото (опціонально)
+            const photoInput = document.getElementById('photo');
+            if (photoInput.files.length > 0) {
+                formData.append('photo', photoInput.files[0]);
+            }
 
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
                         'Authorization': TOKEN
                     },
-                    body: JSON.stringify(animalData)
+                    body: formData
                 });
 
                 if (response.ok) {
                     const result = await response.json();
-                    messageDiv.innerHTML = '<div class="success">✅ Тварину успішно додано!</div>';
+                    messageDiv.innerHTML = '<div class="success">✅ Тварину успішно додано! ID: ' + result.id + '</div>';
+                    
+                    const animalData = {
+                        nickname: document.getElementById('nickname').value,
+                        species: parseInt(document.getElementById('species').value),
+                        breed: document.getElementById('nickname').value + ' порода',
+                        sex: parseInt(document.getElementById('sex').value),
+                        color: document.getElementById('color').value,
+                        _weight: parseInt(document.getElementById('_weight').value) || 3,
+                        sterilization: document.getElementById('sterilization').value === 'true',
+                        _short_description: document.getElementById('_short_description').value,
+                        photoUrl: result.photo_url || null
+                    };
+
                     animals.push(animalData);
                     localStorage.setItem('animals', JSON.stringify(animals));
                     form.reset();
                     displayAnimals();
-                    setTimeout(() => messageDiv.innerHTML = '', 3000);
+                    setTimeout(() => messageDiv.innerHTML = '', 5000);
                 } else {
-                    messageDiv.innerHTML = '<div class="error">❌ Помилка при додаванні тварини</div>';
+                    const error = await response.text();
+                    messageDiv.innerHTML = '<div class="error">❌ Помилка: ' + error + '</div>';
                 }
             } catch (error) {
                 console.error('Error:', error);
                 messageDiv.innerHTML = '<div class="error">❌ Помилка мережі. Збережено локально.</div>';
-                animals.push(animalData);
+                animals.push({
+                    nickname: document.getElementById('nickname').value,
+                    species: parseInt(document.getElementById('species').value),
+                    _short_description: document.getElementById('_short_description').value
+                });
                 localStorage.setItem('animals', JSON.stringify(animals));
                 displayAnimals();
             }
