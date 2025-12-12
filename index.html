@@ -6,314 +6,81 @@
     <title>Simple PWA</title>
     <meta name="theme-color" content="#2b2bff" />
     <link rel="manifest" href="/manifest.json" />
-    
-    <!-- Apple специфічні теги -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Simple PWA" />
-    <link rel="apple-touch-icon" href="/icons/icon-128.png" />
+
     <style>
         :root { --accent:#2b2bff; font-family: system-ui,Segoe UI,Roboto,Helvetica,Arial; }
         body{ margin:0; padding:1rem; color:#222; }
         header{ display:flex; align-items:center; gap:.75rem; }
         .badge{ background:var(--accent); color:#fff; padding:.25rem .5rem; border-radius:.375rem; }
-        #offline { display:none; background:#ffdede; padding:.5rem; margin-top:1rem; border-radius:.375rem; }
-        button{ padding:.5rem .75rem; border:1px solid #ccc; border-radius:.375rem; background:#fff; cursor:pointer; }
-        input, select, textarea { padding:.5rem; margin:.5rem 0; width:100%; box-sizing:border-box; border:1px solid #ccc; border-radius:.375rem; }
-        .form-group { margin:1rem 0; }
-        label { display:block; font-weight:bold; margin-bottom:.25rem; }
         .animal-item { background:#f5f5f5; padding:1rem; margin:1rem 0; border-radius:.375rem; border-left:4px solid var(--accent); }
         .animal-item h3 { margin:.5rem 0; color:var(--accent); }
         .animal-item p { margin:.25rem 0; font-size:.9rem; }
-        .success { background:#d4edda; color:#155724; padding:.75rem; margin:1rem 0; border-radius:.375rem; }
-        .error { background:#f8d7da; color:#721c24; padding:.75rem; margin:1rem 0; border-radius:.375rem; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="badge">🐾 PWA</div>
-        <h1 style="margin:0;font-size:1.25rem;">Animal Shelter</h1>
-    </header>
+<header>
+    <div class="badge">🐾 PWA</div>
+    <h1 style="margin:0;font-size:1.25rem;">Animal Shelter</h1>
+</header>
 
-    <p>Додайте тварину до притулку та переглядайте список.</p>
+<p>Список доданих тварин</p>
 
-    <div>
-        <button id="installBtn" style="display:none">Install App</button>
-        <button id="checkOffline">Check Offline</button>
-    </div>
+<!-- Animals List -->
+<div>
+    <h2>Список тварин</h2>
+    <div id="animalsList"></div>
+</div>
 
-    <div id="offline">You are offline — showing cached content.</div>
+<script>
+    const API_URL = 'http://api.animal-id.net/homeless_v1/animal';
+    const TOKEN = 'Bearer xeOPS_Es8fXyMw0F5UJjmktPi0CUyV5g'; // вставляєш свій токен
 
-    <!-- Add Animal Form -->
-    <div style="background:#fff; padding:1rem; border:1px solid #ddd; border-radius:.375rem; margin:1rem 0;">
-        <h2>Додати тварину</h2>
-        <form id="animalForm">
+    const animalsList = document.getElementById('animalsList');
 
-            <div class="form-group">
-                <label>Кличка:</label>
-                <input type="text" id="nickname" required />
-            </div>
+    async function loadAnimals() {
+        animalsList.innerHTML = '<p>⏳ Завантаження...</p>';
 
-            <div class="form-group">
-                <label>Стать:</label>
-                <select id="sex" required>
-                    <option value="">Виберіть</option>
-                    <option value="0">Самка</option>
-                    <option value="1">Самець</option>
-                    <option value="2">Невідомо</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Вид:</label>
-                <select id="species" required>
-                    <option value="">Виберіть</option>
-                    <option value="1">Кіт</option>
-                    <option value="3">Собака</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Порода:</label>
-                <input type="text" id="breed" />
-            </div>
-
-            <div class="form-group">
-                <label>Колір:</label>
-                <input type="text" id="color" />
-            </div>
-
-            <div class="form-group">
-                <label>Розмір:</label>
-                <select id="animal_size">
-                    <option value="1">Маленька</option>
-                    <option value="2">Середня</option>
-                    <option value="3">Велика</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Стерилізація:</label>
-                <select id="sterilization">
-                    <option value="0">Ні</option>
-                    <option value="1">Так</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Статус ваги:</label>
-                <select id="_weight" required>
-                    <option value="1">Виснажена</option>
-                    <option value="2">Худа</option>
-                    <option value="3">Нормальна</option>
-                    <option value="4">Товста</option>
-                    <option value="5">Ожиріння</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Фото:</label>
-                <input type="file" id="photo" accept="image/*" />
-            </div>
-
-            <div class="form-group">
-                <label>Опис:</label>
-                <textarea id="_short_description"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Дитинча:</label>
-                <select id="_baby">
-                    <option value="0">Ні</option>
-                    <option value="1">Так</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Кульгавість:</label>
-                <select id="_lame">
-                    <option value="0">Ні</option>
-                    <option value="1">Так</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Проблеми зі шкірою:</label>
-                <select id="_skin_problem">
-                    <option value="0">Ні</option>
-                    <option value="1">Так</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Вагітна/Лактуюча:</label>
-                <select id="_preg_lact">
-                    <option value="0">Ні</option>
-                    <option value="1">Так</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Власник:</label>
-                <select id="_owner">
-                    <option value="1">Притулок</option>
-                    <option value="0">Без власника</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn">Додати тварину</button>
-
-        </form>
-
-        <div id="message"></div>
-    </div>
-
-    <!-- Animals List -->
-    <div>
-        <h2>Список тварин</h2>
-        <div id="animalsList"></div>
-    </div>
-
-    <script>
-        const API_URL = 'http://api.animal-id.info/homeless_v1/animal';
-        const TOKEN = 'Bearer okRpmDg2wJeyLPbD14tDcbrgeYOX8ltv';
-
-        // Register service worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').then(reg=>{
-                console.log('SW registered:', reg.scope);
-            }).catch(err=>{
-                console.warn('SW registration failed:', err);
+        try {
+            const response = await fetch(API_URL, {
+                method: 'GET',
+                headers: {
+                    'Authorization': TOKEN
+                }
             });
-        }
 
-        // Offline indicator
-        const offlineEl = document.getElementById('offline');
-        function updateOnlineStatus(){ offlineEl.style.display = navigator.onLine ? 'none' : 'block'; }
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-        document.getElementById('checkOffline').addEventListener('click', updateOnlineStatus);
-        updateOnlineStatus();
+            const result = await response.json();
 
-        // Install prompt
-        const isIphone = /iPhone|iPad|iPod/.test(navigator.userAgent);
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
-        
-        if (isIphone) {
-            installBtn.textContent = '📱 Add to Home Screen';
-            installBtn.style.display = 'inline-block';
-            installBtn.addEventListener('click', () => {
-                alert('Натисніть Share (внизу) → Add to Home Screen');
-            });
-        } else {
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                installBtn.style.display = 'inline-block';
-            });
-            installBtn.addEventListener('click', async () => {
-                if (!deferredPrompt) return;
-                deferredPrompt.prompt();
-                const choice = await deferredPrompt.userChoice;
-                console.log('Install choice:', choice.outcome);
-                deferredPrompt = null;
-                installBtn.style.display = 'none';
-            });
-        }
+            if (!response.ok || !result.data) {
+                animalsList.innerHTML =
+                    '<p style="color:red;">❌ Помилка API: ' + JSON.stringify(result) + '</p>';
+                return;
+            }
 
-        // Add Animal Form Handler
-        const form = document.getElementById('animalForm');
-        const messageDiv = document.getElementById('message');
-        const animalsList = document.getElementById('animalsList');
-        let animals = JSON.parse(localStorage.getItem('animals')) || [];
+            const animals = result.data;
 
-        // Display animals from localStorage
-        function displayAnimals() {
-            animalsList.innerHTML = animals.map((animal, idx) => `
+            if (!animals.length) {
+                animalsList.innerHTML = '<p>Немає тварин</p>';
+                return;
+            }
+
+            animalsList.innerHTML = animals.map(animal => `
                 <div class="animal-item">
-                    <h3>${animal.nickname} ${animal.species === 1 ? '🐱' : '🐶'}</h3>
-                    <p><strong>Порода:</strong> ${animal.breed || '-'}</p>
+                    <h3>${animal.transponder || 'Без ID'} 🐾</h3>
                     <p><strong>Вид:</strong> ${animal.species === 1 ? 'Кіт' : 'Собака'}</p>
-                    <p><strong>Стать:</strong> ${['Самка', 'Самець', 'Невідомо'][animal.sex] || '-'}</p>
-                    <p><strong>Колір:</strong> ${animal.color || '-'}</p>
-                    <p><strong>Статус ваги:</strong> ${['', 'Виснажена', 'Худа', 'Нормальна', 'Товста', 'Ожиріння'][animal._weight] || '-'}</p>
-                    <p><strong>Стерилізована:</strong> ${animal.sterilization ? 'Так' : 'Ні'}</p>
-                    <p><strong>Опис:</strong> ${animal._short_description || '-'}</p>
-                    ${animal.photoUrl ? `<img src="${animal.photoUrl}" style="max-width:100%; border-radius:.375rem; margin-top:.5rem;" />` : ''}
-                    <button onclick="deleteAnimal(${idx})" style="background:#dc3545; color:#fff; border:none; margin-top:.5rem; padding:.5rem .75rem; border-radius:.375rem; cursor:pointer;">Видалити</button>
+                    <p><strong>Стать:</strong> ${['Самка','Самець','Невідомо'][animal.sex] || '-'}</p>
+                    <p><strong>Дата реєстрації:</strong> ${animal.register_date}</p>
                 </div>
             `).join('');
+
+        } catch (err) {
+            animalsList.innerHTML =
+                '<p style="color:red;">❌ Помилка мережі: ' + err.message + '</p>';
         }
+    }
 
-        function deleteAnimal(idx) {
-            animals.splice(idx, 1);
-            localStorage.setItem('animals', JSON.stringify(animals));
-            displayAnimals();
-        }
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            messageDiv.innerHTML = '<div class="success">⏳ Завантажується...</div>';
-
-            const formData = new FormData();
-
-            formData.append('breed', document.getElementById('breed').value);
-            formData.append('sex', document.getElementById('sex').value);
-            formData.append('nickname', document.getElementById('nickname').value);
-            formData.append('species', document.getElementById('species').value);
-            formData.append('sterilization', document.getElementById('sterilization').value);
-            formData.append('color', document.getElementById('color').value);
-            formData.append('animal_size', document.getElementById('animal_size').value);
-            formData.append('birth_date', Math.floor(Date.now() / 1000));
-
-            formData.append('_long', -1.0);
-            formData.append('_lat', -1.0);
-            formData.append('_weight', document.getElementById('_weight').value);
-            formData.append('_lame', document.getElementById('_lame').value);
-            formData.append('_skin_problem', document.getElementById('_skin_problem').value);
-            formData.append('_baby', document.getElementById('_baby').value);
-            formData.append('_preg_lact', document.getElementById('_preg_lact').value);
-            formData.append('_owner', document.getElementById('_owner').value);
-            formData.append('_short_description', document.getElementById('_short_description').value);
-
-            formData.append('created_at', Math.floor(Date.now() / 1000));
-
-            // Фото
-            const photo = document.getElementById('photo').files[0];
-            if (photo) formData.append('photo', photo);
-
-            try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': TOKEN
-                    },
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    messageDiv.innerHTML =
-                        '<div class="success">✅ Тварину успішно додано! ID: ' +
-                        result.id +
-                        '</div>';
-                } else {
-                    messageDiv.innerHTML =
-                        '<div class="error">❌ API помилка: ' +
-                        JSON.stringify(result) +
-                        '</div>';
-                }
-
-            } catch (err) {
-                messageDiv.innerHTML = '<div class="error">❌ Помилка мережі</div>';
-                console.log(err);
-            }
-        });
+    loadAnimals(); // завантажує список при старті
+</script>
 
 
-        displayAnimals();
-    </script>
 </body>
 </html>
